@@ -1,0 +1,383 @@
+.chat-container {
+    background: linear-gradient(113.49deg, #984D38 -30.3%, #181E41 58.12%);
+
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    background-color: #1a1a1a;
+    color: #ddd;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+ 
+
+
+  
+  /* Messages Display Area */
+  .messages {
+    height: 300px;
+    overflow-y: auto;
+    /* background: linear-gradient(113.49deg, #984D38 -30.3%, #181E41 58.12%); */
+
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Newest messages at the bottom */
+    gap: 10px;
+  }
+  
+  /* Individual Message Styling */
+  .messages p {
+    
+    background-color: #444;
+    padding: 10px 15px;
+    border-radius: 18px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    line-height: 1.4;
+    max-width: 80%;
+    word-wrap: break-word;
+    position: relative;
+  }
+  
+  /* Username Styling
+  .messages p strong {
+    font-weight: bold;
+  } */
+  
+  /* Differentiate User Message */
+  .my-message {
+    align-self: flex-end;
+    background-color: #007bff;
+  }
+  
+  /* Chat Input and Send Button Container */
+  .chat-input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #292929;
+    border-top: 1px solid #444;
+  }
+  
+  /* Text Input Styling */
+  .chat-input {
+    flex-grow: 1;
+    padding: 10px;
+    margin-right: 10px;
+    background-color: #464B67;
+    border: 1px solid #555;
+    border-radius: 18px;
+    color: #ddd;
+    outline: none;
+  }
+  
+  .chat-input::placeholder {
+    color: #bbb;
+  }
+  
+  /* Send Button Styling */
+  .chat-send-btn {
+   margin-top: 15px;
+   color: #0056b3;
+    transition: background-color 0.2s;
+  }
+  
+  .chat-send-btn:hover {
+   color: #fefefe;
+  }
+  
+  /* Adjust scroll bar for dark theme */
+  .messages::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .messages::-webkit-scrollbar-track {
+    background: #2c2c2c;
+  }
+  
+  .messages::-webkit-scrollbar-thumb {
+    background: #555;
+  }
+  
+  
+  /* body {
+      font-family: "PT Serif", sans-serif;
+      margin: 0px;
+      color: #ffffff;
+      background-color:hsla(280,33%,46%,1);
+      background-image:
+      radial-gradient(at 36% 14%, hsla(266,22%,36%,1) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsla(189,53%,11%,1) 0px, transparent 50%),
+       radial-gradient(at 0% 50%, hsla(355,44%,15%,1) 0px, transparent 50%),
+      radial-gradient(at 84% 85%, hsla(229,74%,12%,1) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(360,29%,24%,1) 0px, transparent 50%),
+      radial-gradient(at 4% 14%, hsla(360,47%,27%,1) 0px, transparent 50%);
+      font-size: 1.1em;
+    } */
+  
+   /* styles.css */
+  
+  .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background-color:hsla(280,33%,46%,1);
+      background-image:
+      radial-gradient(at 36% 14%, hsla(266,22%,36%,1) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsla(189,53%,11%,1) 0px, transparent 50%),
+       radial-gradient(at 0% 50%, hsla(355,44%,15%,1) 0px, transparent 50%),
+      radial-gradient(at 84% 85%, hsla(229,74%,12%,1) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(360,29%,24%,1) 0px, transparent 50%),
+      radial-gradient(at 4% 14%, hsla(360,47%,27%,1) 0px, transparent 50%);
+      color: #fff;
+  }
+  
+  .navbar-item {
+      padding: 0.5rem 1rem;
+      color: #fff;
+      text-decoration: none;
+  }
+  
+  .navbar-item:hover {
+      background-color: #555;
+  }
+  
+  .input {
+      width: 300px;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+  }
+  
+  .button {
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+  }
+  
+  .button:hover {
+      background-color: #0056b3;
+  }
+  /* ////////////////////// */
+  .custom-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #787e85;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin: 0 10px;
+      cursor: pointer;
+  }
+  
+  
+  /* /////////////////// */
+  /* Style for images */
+  .image-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      
+    }
+    
+    .image-container img {
+      width: 200px;
+      height: 200px;
+      margin: 0 10px; /* Adjust margin as needed */
+      border-radius: 8px; /* Add rounded corners */
+      box-shadow: #a7f3231a;
+      transition: transform 0.3s ease; /* Add a smooth transition */
+      
+    }
+    
+    .image-container img:hover {
+      transform: scale(1.05); /* Increase size on hover */
+    }
+    
+    /* Style for text */
+    .text {
+      margin-top: 20px;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+    
+  
+  
+    
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+  
+  /* Dropdown button */
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+  }
+  
+  /* Add a red background color to navbar links on hover */
+  .navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+  }
+  
+  /* Dropdown content (hidden by default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  /* Add a grey background color to dropdown links on hover */
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  
+  .login-form {
+    background-color: rgb(24, 6, 24);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 20px;
+  }
+  
+  .login-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .btn-primary {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4b0082; /* Dark purple */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #2a0045; /* Darker shade of purple on hover */
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .signup-text {
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  
+  .login-form.singUp {
+    background-color: purple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 20px;
+  }
+  
+  .singUp-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .singUp-form-group {
+    margin-bottom: 20px;
+  }
+  
+  .singUp-form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .btn-secondary {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4b0082; /* Dark purple */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #2a0045; /* Darker shade of purple on hover */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .formContainer {
+      width: 90%;
+      padding: 10px;
+    }
+  }
+  /* In your CSS file */
+  /* input:focus, textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+  } */
+  
+  .sendButton:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  
