@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import PaymentSlice from './features/paymentSlice'
+import {exploreSlice} from "../lib/features/exploreslice"
 export const makeStore = () => {
   return configureStore({
     reducer: {
         payment: PaymentSlice,
+        explore: exploreSlice.reducer,
     }
   })
 }

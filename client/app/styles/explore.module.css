@@ -1,0 +1,158 @@
+/* @import "~bootstrap-icons/font/bootstrap-icons.css"; */
+
+.all {
+    background-color: hsla(280, 33%, 46%, 1);
+    background-image: radial-gradient(at 36% 14%, hsla(266, 22%, 36%, 1) 0px, transparent 50%),
+                                        radial-gradient(at 80% 0%, hsla(189, 53%, 11%, 1) 0px, transparent 50%),
+                                        radial-gradient(at 0% 50%, hsla(355, 44%, 15%, 1) 0px, transparent 50%),
+                                        radial-gradient(at 84% 85%, hsla(229, 74%, 12%, 1) 0px, transparent 50%),
+                                        radial-gradient(at 0% 100%, hsla(360, 29%, 24%, 1) 0px, transparent 50%),
+                                        radial-gradient(at 4% 14%, hsla(360, 47%, 27%, 1) 0px, transparent 50%);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+/* .title-container {
+    text-align: center;
+    margin-bottom: 20px;
+    position: absolute;
+    right: 50%; 
+    padding-top: 100px  ;
+} */
+
+.titlee {
+    font-size: 60px;
+    font-weight: bold;
+    color: rgb(246, 243, 243);
+    display : center;
+     right: -265px;  
+    top: 80px;  
+}
+
+.item {
+    width: 300px;
+    height: 400px;
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    transform: translateY(100%);
+}
+
+.item:hover .profile-details {
+    transform: translateY(0);
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.names {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.description {
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.cover-picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    cursor: pointer;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    gap: 10px;
+}
+
+.button {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: uppercase;
+    position: relative;
+    transition: all 0.3s ease;
+    border-radius: 20px;
+}
+
+.button:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    z-index: -1;
+    background-color: #b1b1b1;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.button:hover {
+    color: black;
+}
+
+.button:hover:after {
+    opacity: 1;
+}
+
+.button:nth-of-type(1) {
+    background-color: #800080;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .item {
+        width: 100%;
+        height: auto;
+    }
+    
+    .titlee {
+        font-size: 40px;
+        right: -135px;
+        top: 40px;
+    }
+    
+    .button {
+        font-size: 16px;
+    }
+}
