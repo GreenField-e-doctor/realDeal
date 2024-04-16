@@ -1,12 +1,12 @@
+'use client'
 import React, { useState, useEffect, useRef } from 'react';
-
+import  styles from '../styles/Chat.module.css'
 interface User {
   name: string;
   role: string;
 }
 
 interface Message {
-  type: string;
   name: string;
   message: string;
   role: string;
@@ -16,9 +16,13 @@ interface Props {
   user: User;
 }
 
-const ChatComponent: React.FC<Props> = ({ user }) => {
+const ChatComponent: React.FC<Props> = () => {
+  const user = {
+    name: 'Community',
+    role: 'chatBot'
+  }
   const [message, setMessage] = useState<string>('');
-  const [messages, setMessages] = useState<Message[]>([{ type:"stri", name: "Community", message: "Welcome to the chat!", role: 'chatBot' }]);
+  const [messages, setMessages] = useState<Message[]>([{ name: "Community", message: "Welcome to the chat!", role: 'chatBot' }]);
   const [users, setUsers] = useState<User[]>([]);
   const ws = useRef<WebSocket | null>(null);
 
@@ -98,30 +102,30 @@ const ChatComponent: React.FC<Props> = ({ user }) => {
   };
 
   return (
-    <div className="chat-container">
+    <div className={styles['chat-container']}>
       <h2>Community Room</h2>
-      <div className="user-list">
+      <div className={styles["user-list"]}>
         <strong>Users Online:</strong>
         {messages.map((msg, index) => (
           <div key={index} style={{ color: getUsernameColor(msg.name) }}>{msg.name}-{msg.role}</div>
         ))}
       </div>
-      <div id="messages" className="messages">
+      <div id="messages" className={styles["messages"]}>
         {messages.map((msg, index) => (
           <p key={index} className={`message ${msg.name === user.name ? "my-message" : ""}`}>
             <strong style={{ color: getUsernameColor(msg.name) }}>{msg.name}</strong>: {msg.message}
           </p>
         ))}
       </div>
-      <div className="chat-input-container">
+      <div className={styles["chat-input-container"]}>
         <input
-          className="chat-input"
+          className={styles["chat-input"]}
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type your message here..."
         />
-        <button onClick={sendMessage} className="chat-send-btn">Send</button>
+        <button onClick={sendMessage} className={styles["chat-send-btn"]}>Send</button>
       </div>
     </div>
   );
