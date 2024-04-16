@@ -96,11 +96,11 @@ model Nft {
 }
 
 model Explore {
-  id          Int    @id @default(autoincrement())
-  imgP        String
-  name        String
-  imgB        String
-  description String
+  id          Int      @id @default(autoincrement())
+  imgP        String   @db.VarChar(1000)
+  name        String   @db.VarChar(255)
+  imgB        String   @db.VarChar(1000)
+  description String   @db.Text
 }
 
 model Shows {

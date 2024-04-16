@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // import Market from './Market';
-import styles from '../styles/homepage.style.css'
+// import styles from '../styles/homepage.style.css'
 const Homepage = () => {
     const [liked, setLiked] = useState([false, false, false,false, false, false,false, false, false]);
     const [view, setView] = useState('home');
