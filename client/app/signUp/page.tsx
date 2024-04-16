@@ -1,21 +1,23 @@
-'use client'    
+'use client'
 import React, { useState } from 'react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { setError } from '../lib/features/userSlice';
+import { useAppDispatch } from '../lib/hook';
+import { registerUser, setError } from '../lib/features/userSlice';
 import { SignUpProps, SignUpData } from '../types/types';
 
-const SignUp: React.FC<SignUpProps> = ({ signUp, changeView }) => {
+type ExtendedSignUpProps = Partial<SignUpProps>;  // Make all properties of SignUpProps optional
+
+const SignUp: React.FC<ExtendedSignUpProps> = ({ changeView }) => {
     const [formData, setFormData] = useState<SignUpData>({
         name: '',
         email: '',
         password: '',
-        role: 'fashionDesigner',
+        role: '',
         image: ''
     });
     const [isLoading, setIsLoading] = useState(false);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
         setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -47,8 +49,8 @@ const SignUp: React.FC<SignUpProps> = ({ signUp, changeView }) => {
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         if (formData.image) {
-            signUp(formData); 
-            changeView('login');
+            dispatch(registerUser(formData));
+            if (changeView) changeView('login');
         } else {
             dispatch(setError('Please upload an image.'));
         }
@@ -56,7 +58,7 @@ const SignUp: React.FC<SignUpProps> = ({ signUp, changeView }) => {
 
     return (
         <div className="signUp" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '20px' }}>
-            <form>
+            <form onSubmit={e => e.preventDefault()}>
                 <label htmlFor="name">Name</label>
                 <input type="text" id="name" value={formData.name} onChange={handleChange} required />
 
@@ -83,8 +85,8 @@ const SignUp: React.FC<SignUpProps> = ({ signUp, changeView }) => {
                     )}
                 </Dropzone>
 
-                <button onClick={handleSubmit}>Sign Up</button>
-                <button type="button" onClick={() => changeView('login')}>Login</button>
+                <button type="button" onClick={handleSubmit}>Sign Up</button>
+                <button type="button" onClick={() => changeView && changeView('login')}>Login</button>
             </form>
         </div>
     );

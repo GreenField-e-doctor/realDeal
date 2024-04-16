@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+'use client'
 
-import { RootState } from '../lib/store'
-import { login, setError } from '../lib/features/userSlice';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../lib/hook'; 
+import { RootState } from '../lib/store';
+import { login } from "../lib/features/userSlice";
 
 interface LoginProps {
   changeView: (view: string) => void;
@@ -12,7 +14,7 @@ const Login: React.FC<LoginProps> = ({ changeView }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const error = useSelector((state: RootState) => state.user.error);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
