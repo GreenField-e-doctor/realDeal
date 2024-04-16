@@ -1,0 +1,111 @@
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:root@localhost:3306/mydbc"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  name     String
+  password String
+  email    String  @unique
+  role     String
+  image    String?
+
+  // Relations
+  products      Product[]
+  posts         Post[]
+  conversations Conversation[] @relation(name: "ConversationParticipants")
+  cart          Cart?          @relation(fields: [cartId], references: [id])
+  cartId        Int?
+}
+
+model Product {
+  id              Int     @id @default(autoincrement())
+  name            String
+  description     String
+  price           Float
+  color           String // You might want to change the type to match your data structure
+  image           String
+  category        String
+  quantity        Int     @default(1)
+  brand           String
+  fashionDesigner String?
+
+  userId Int  @unique
+  user   User @relation(fields: [userId], references: [id])
+
+  // Relations
+  cart Cart[]
+}
+
+model Cart {
+  id       Int    @id @default(autoincrement())
+  name     String
+  image    String
+  price    Float
+  quantity Int    @default(1)
+
+  userId Int @unique
+
+  // Relations
+  products Product[]
+
+  User User[]
+}
+
+model Conversation {
+  id Int @id @default(autoincrement())
+
+  participants User[] @relation("ConversationParticipants")
+
+  messages Message[]
+}
+
+model Message {
+  id         Int    @id @default(autoincrement())
+  senderId   Int
+  receiverId Int
+  content    String
+
+  conversationId Int? // Foreign key
+  conversation   Conversation? @relation(fields: [conversationId], references: [id])
+}
+
+model Post {
+  id      Int    @id @default(autoincrement())
+  title   String
+  content String
+  image   String
+
+  userId Int? // Foreign key
+  user   User? @relation(fields: [userId], references: [id])
+}
+
+model Nft {
+  id           Int    @id @default(autoincrement())
+  UncommenRare Int
+  price        Int
+  imgUrl       String
+  genre        String
+  status       String
+  comingSoon   String
+}
+
+model Explore {
+  id          Int    @id @default(autoincrement())
+  imgP        String
+  name        String
+  imgB        String
+  description String
+}
+
+model Shows {
+  id      Int    @id @default(autoincrement())
+  time    String
+  showing String
+  imgUrl  String
+}
