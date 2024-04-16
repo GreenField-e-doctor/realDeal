@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react';
 import  styles from '../styles/Chat.module.css'
+import { IoSend } from "react-icons/io5";
 interface User {
   name: string;
   role: string;
@@ -28,7 +29,7 @@ const ChatComponent: React.FC<Props> = () => {
 
   useEffect(() => {
     function connect() {
-      ws.current = new WebSocket('ws://localhost:3000');
+      ws.current = new WebSocket('ws://localhost:1128');
 
       ws.current.onopen = () => {
         console.log('Connected to WebSocket server');
@@ -110,9 +111,10 @@ const ChatComponent: React.FC<Props> = () => {
           <div key={index} style={{ color: getUsernameColor(msg.name) }}>{msg.name}-{msg.role}</div>
         ))}
       </div>
+      <hr />
       <div id="messages" className={styles["messages"]}>
         {messages.map((msg, index) => (
-          <p key={index} className={`message ${msg.name === user.name ? "my-message" : ""}`}>
+          <p key={index} className={styles[`message ${msg.name === user.name ? "my-message" : ""}`]}>
             <strong style={{ color: getUsernameColor(msg.name) }}>{msg.name}</strong>: {msg.message}
           </p>
         ))}
@@ -125,7 +127,7 @@ const ChatComponent: React.FC<Props> = () => {
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type your message here..."
         />
-        <button onClick={sendMessage} className={styles["chat-send-btn"]}>Send</button>
+        <IoSend  onClick={sendMessage} className={styles["chat-send-btn"]}/>
       </div>
     </div>
   );
