@@ -94,13 +94,15 @@ const ChatComponent: React.FC<Props> = () => {
   const sendMessage = (e: React.FormEvent) => {
     e.preventDefault();
     if (!message.trim() || !ws.current || ws.current.readyState !== WebSocket.OPEN) return;
-
+  
     const messageData = { type: 'message', name: user.name || 'Anonymous', message, role: user.role };
     ws.current.send(JSON.stringify(messageData));
 
-    setMessages(prevMessages => [...prevMessages, messageData]);
-    setMessage('');
+    setMessage(''); 
+  
+    
   };
+  
 
   return (
     <div className={styles['chat-container']}>
