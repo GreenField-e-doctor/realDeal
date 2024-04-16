@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE `explore` MODIFY `imgP` VARCHAR(1000) NOT NULL,
+    MODIFY `name` VARCHAR(255) NOT NULL,
+    MODIFY `imgB` VARCHAR(1000) NOT NULL,
+    MODIFY `description` TEXT NOT NULL;

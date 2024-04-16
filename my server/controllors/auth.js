@@ -8,7 +8,7 @@ require('dotenv').config();
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
 module.exports = {
-    // Register a new user
+    // Register a new ///////user
     register: async (req, res) => {
         try {
             const {
