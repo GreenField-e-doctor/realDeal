@@ -59,7 +59,6 @@ const ChatComponent: React.FC<Props> = () => {
         ws.current?.close();
       };
     }
-
     function handleReceivedData(data: any) {
       try {
         const parsedData = JSON.parse(data);
@@ -72,7 +71,6 @@ const ChatComponent: React.FC<Props> = () => {
         console.error('Error parsing message:', error);
       }
     }
-
     connect();
 
     return () => {
