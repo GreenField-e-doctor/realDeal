@@ -26,19 +26,23 @@ const Video: React.FC = () => {
         <button className={styles["follow"]}>follow</button>
       </div>
       <div className={styles["Twoboxes"]}>
-      <div className={styles["box"]}></div>
-      <div className={styles["box"]}></div>
+      <div className={styles["box"]}> 
+      <h4 className={styles['represntig']}>Representing Products</h4></div>
+      <div className={styles["box"]}><h4 className={styles['hChat']}>Chat</h4></div>
     
       </div>
       <br/>
       <button className={styles["mintNow"]}>mint now</button>
-      
+      <br/>
+      <button className={styles["Backto"]}>Back to Fashion Shows</button>
+
       <div className={styles["liveVideos"]}>
-       
+      
       <iframe className={styles["livevideo"]} src="https://www.youtube.com/embed/7FjL6i04_uY" ></iframe>
       <iframe className={styles["livevideo"]} src="https://www.youtube.com/embed/NSvnwRYKzg0"></iframe>
       <iframe className={styles["livevideo"]} src="https://www.youtube.com/embed/rc31PMlXF6I"></iframe>
       <iframe className={styles["livevideo"]} src="https://www.youtube.com/embed/hoKDrFyQDy0"></iframe>
+       
       </div>
      
       

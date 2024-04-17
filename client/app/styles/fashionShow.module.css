@@ -48,7 +48,7 @@ padding-left: 200px;
 }
 .mintNow {
 margin-left: 550px;
-border-radius: 12px;
+border-radius: 6px;
 height: 40px;
 width: 150px;
 background: linear-gradient(214.02deg, #B75CFF 6.04%, #671AE4 92.95%);
@@ -98,3 +98,21 @@ width: 90px;
 background: linear-gradient(214.02deg, #B75CFF 6.04%, #671AE4 92.95%);
 color: aliceblue;
 }
+.represntig{
+  color: white;
+  margin-left: 10px;
+}
+.hChat{
+  margin-left: 10px;
+
+  color: white ;
+}
+.Backto {
+  margin-top: 80px;
+  margin-left: 50px;
+  border-radius: 22px;
+  height: 40px;
+  width: 300px;
+  background: linear-gradient(214.02deg, #B75CFF 6.04%, #671AE4 92.95%);
+  color: aliceblue;
+  }
