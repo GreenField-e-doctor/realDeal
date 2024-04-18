@@ -17,7 +17,7 @@ const userRoutes = require("./routes/user.routes");
 const exploreRoutes = require("./routes/explore.routes");
 const allnftRoutes = require("./routes/allnft.routes");
 const paymentRoutes = require('./routes/payment.routes');
-
+const commentRoutes = require ('./routes/comment.routes')
 // WebSocket server logic
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(data) {
@@ -42,7 +42,7 @@ app.use('/api/user', userRoutes);
 app.use("/api/explore", exploreRoutes);
 app.use("/api/allnft", allnftRoutes);
 app.use("/api/payment", paymentRoutes);
-
+app.use('/api/comment', commentRoutes)
 // Start the server
 server.listen(PORT, function () {
   console.log("listening on port " + PORT);

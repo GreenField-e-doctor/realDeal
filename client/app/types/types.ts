@@ -1,5 +1,5 @@
 export interface PaymentComponentProps {
-    styles: any; // Adjust type as needed
+    styles: any; 
     amount:number
     link:string
   }
@@ -20,4 +20,32 @@ export interface PaymentComponentProps {
   export interface SignUpProps {
     signUp: (data: SignUpData) => void;
     changeView: (view: string) => void;
+}
+
+export interface Post {
+  id: number;
+  title: string;
+  content: string;
+  image: string;
+  userId?: number;
+}
+
+export interface PostState {
+  posts: Post[];
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: string | null;
+}
+
+export interface Comment {
+  id: number;
+  content: string;
+  createdAt: string;
+  postId: number;
+  userId: number;
+}
+
+export interface CommentState {
+  comments: Comment[];
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: string | null;
 }

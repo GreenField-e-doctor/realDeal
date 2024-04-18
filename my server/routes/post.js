@@ -3,13 +3,13 @@ const router = require('express').Router();
 
 
 
-const {getAll,addPost,deleteOne}=require('../controllors/post')
+const {getAll, getOne, addPost, deleteOne}=require('../controllors/post')
 
 
 
 
-// router.get("/",getAll);
-
+router.get('/all', getAll);
+router.get('/:id', getOne);
 router.post("/",addPost);
 router.delete("/:id",deleteOne);
 
