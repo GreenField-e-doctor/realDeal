@@ -1,5 +1,7 @@
 
 body {
+  padding-left: 150px;
+  padding-right: 150px;
     font-family: "PT Serif", sans-serif;
     margin: 0px;
     color: #ffffff;
@@ -53,8 +55,8 @@ body {
 .button {
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #012b57;
+    color: #b51212;
     border: none;
     cursor: pointer;
 }
@@ -66,7 +68,7 @@ body {
 .custom-button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #787e85;
+    background-color: #B75CFF;
     color: white;
     border: none;
     border-radius: 5px;
@@ -74,7 +76,9 @@ body {
     cursor: pointer;
 }
 
-
+.custom-button:hover{
+  background-color: #2a0045;
+}
 /* /////////////////// */
 /* Style for images */
 .image-container {
