@@ -109,3 +109,11 @@ model Shows {
   showing String
   imgUrl  String
 }
+
+model Comment {
+  id           Int       @id @default(autoincrement())
+  content      String
+  imageUrl     String   @db.VarChar(1000)   
+ 
+}
+
