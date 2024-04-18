@@ -1,6 +1,6 @@
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:root@localhost:3306/mydbc"
+  url      = "mysql://Amine:wess2004wess@localhost:3306/mydbc"
 }
 
 generator client {
@@ -123,5 +123,12 @@ model Shows {
   time    String
   showing String
   imgUrl  String
+}
+
+model Comment {
+  id           Int       @id @default(autoincrement())
+  content      String
+  imageUrl     String   @db.VarChar(1000)   
+ 
 }
 

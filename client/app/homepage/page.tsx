@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // import Market from './Market';
-// import styles from '../styles/homepage.style.css'
+import styles from "../styles/homepage.module.css"
 const Homepage = () => {
     const [liked, setLiked] = useState([false, false, false,false, false, false,false, false, false]);
     const [view, setView] = useState('home');
@@ -20,6 +20,7 @@ const Homepage = () => {
     }
 
     return (
+        <div className= {styles['all']}>
         <div style={{ paddingBottom: '100px' }}>
             {/* <Navbar user={user} changeView={changeView}/> */}
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
@@ -113,7 +114,7 @@ const Homepage = () => {
                     </div>
                     <br />
                     <button className="custom-button">Buy Now</button>
-                    {/* Heart icon */}
+                    {/* Heart icon }
                     <i
                         className={`far fa-heart${liked[0] ? ' liked' : ''}`}
                         onClick={() => toggleLike(0)}
@@ -256,9 +257,12 @@ const Homepage = () => {
 
             </div>
         </div>
-    );
+    
+        {/* <Footer /> */}
+    </div>  
+    </div>
+    )
 }
-
 export default Homepage;
 
 

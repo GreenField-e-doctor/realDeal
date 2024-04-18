@@ -4,6 +4,8 @@ import {exploreSlice} from "../lib/features/exploreslice"
 import userSlice from './features/userSlice'
 import postSlice from './features/postSlice'
 import commentReducer from './features/commentSlice';
+import { allnftsSlice } from "./features/allnftSlice";
+import commentsReducer from './features/commentsSlice';
 export const makeStore = () => {
   return configureStore({
     reducer: {
@@ -12,10 +14,15 @@ export const makeStore = () => {
         user: userSlice,
         post: postSlice,
         comment: commentReducer,
+        allnft: allnftsSlice.reducer,  
+        comments: commentsReducer,
+
 
     }
   })
 }
+
+
 
 export type AppStore = ReturnType<typeof makeStore>
 export type RootState = ReturnType<AppStore['getState']>
