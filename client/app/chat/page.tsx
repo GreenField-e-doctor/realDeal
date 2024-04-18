@@ -100,7 +100,6 @@ const ChatComponent: React.FC<Props> = () => {
   
     
   };
-  
 
   return (
     <div className={styles['chat-container']}>
@@ -112,7 +111,7 @@ const ChatComponent: React.FC<Props> = () => {
         ))}
       </div>
       <hr />
-      <div id="messages" className={styles["messages"]}>
+       <div id="messages" className={styles["messages"]}>
         {messages.map((msg, index) => (
           <p key={index} className={styles[`message ${msg.name === user.name ? "my-message" : ""}`]}>
             <strong style={{ color: getUsernameColor(msg.name) }}>{msg.name}</strong>: {msg.message}

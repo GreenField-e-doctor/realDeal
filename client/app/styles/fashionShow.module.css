@@ -40,7 +40,14 @@ color: #0047FF;
 display: flex;
 padding-left: 200px;
 }
-.box {
+.box2 {
+  width: 400px; 
+  height: 400px; 
+  background-color: #FFFFFF1A;
+  margin: 10px; 
+}
+.box1 {
+  
   width: 400px; 
   height: 400px; 
   background-color: #FFFFFF1A;
@@ -115,4 +122,38 @@ color: aliceblue;
   width: 300px;
   background: linear-gradient(214.02deg, #B75CFF 6.04%, #671AE4 92.95%);
   color: aliceblue;
+  }
+  .comment{
+gap: 40px;
+    display: flex;
+    align-items: center; 
+    padding-top: 10px;
+    color: white !important;
+  }
+.imgcomments{
+height: 30px;
+width: 30px;
+border-radius: 70px;
+float: right;
+  }
+  .inputComment{
+  margin-left: 20px;
+  border-radius: 50px;
+    width: 350px;
+   height: 30px;
+   background-color: #686375;
+   
+  }
+  .labelsendcomment{
+    display: flex;
+    align-items: center; 
+   margin-top: 30px;
+gap: 10px;
+  }
+  .sendMessage{
+    color: #0047FF;
+  }
+  .scrolldiv{
+   overflow-y: scroll;
+    height: 300px;
   }
