@@ -14,7 +14,7 @@ body {
     radial-gradient(at 0% 100%, hsla(360,29%,24%,1) 0px, transparent 50%),
     radial-gradient(at 4% 14%, hsla(360,47%,27%,1) 0px, transparent 50%);
     font-size: 1.1em;
-  }
+  } 
 
  /* styles.css */
 
@@ -272,7 +272,7 @@ body {
   }
 }
 /* In your CSS file */
-input:focus, textarea:focus {
+.inputFocus:focus, .textareaFocus:focus {
   border-color: #007bff;
   box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
 }

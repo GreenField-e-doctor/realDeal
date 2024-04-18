@@ -1,12 +1,14 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { useAppDispatch } from '../lib/hook';
 import { registerUser, setError } from '../lib/features/userSlice';
 import { SignUpProps, SignUpData } from '../types/types';
+import Link from 'next/link'; 
+import styles from '../styles/SignUp.module.css'; 
 
-type ExtendedSignUpProps = Partial<SignUpProps>;  // Make all properties of SignUpProps optional
+type ExtendedSignUpProps = Partial<SignUpProps>;
 
 const SignUp: React.FC<ExtendedSignUpProps> = ({ changeView }) => {
     const [formData, setFormData] = useState<SignUpData>({
@@ -45,51 +47,51 @@ const SignUp: React.FC<ExtendedSignUpProps> = ({ changeView }) => {
             setIsLoading(false);
         }
     };
-
-    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault();
+    const handleSubmit = () => {
         if (formData.image) {
-            dispatch(registerUser(formData));
-            if (changeView) changeView('login');
+            dispatch(registerUser(formData))
+              .then(() => {
+                window.location.href = '/login'; // Direct navigation to login page
+              })
+              .catch((error) => {
+                console.error('Registration error:', error);
+                // Handle registration errors here
+              });
         } else {
             dispatch(setError('Please upload an image.'));
         }
     };
 
     return (
-        <div className="signUp" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '20px' }}>
-            <form onSubmit={e => e.preventDefault()}>
-                <label htmlFor="name">Name</label>
-                <input type="text" id="name" value={formData.name} onChange={handleChange} required />
-
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" value={formData.email} onChange={handleChange} required />
-
-                <label htmlFor="role">Role</label>
-                <select id="role" value={formData.role} onChange={handleChange} required>
-                    <option value="fashionDesigner">Fashion Designer</option>
-                    <option value="client">Client</option>
-                </select>
-
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password" value={formData.password} onChange={handleChange} required />
-
-                <Dropzone onDrop={handleImageDrop}>
-                    {({ getRootProps, getInputProps }) => (
-                        <section style={{ padding: '20px', border: '2px dashed #ddd', borderRadius: '5px', textAlign: 'center' }}>
-                            <div {...getRootProps()}>
-                                <input {...getInputProps()} />
-                                {isLoading ? 'Uploading...' : 'Drop some files here, or click to select files'}
-                            </div>
-                        </section>
-                    )}
-                </Dropzone>
-
-                <button type="button" onClick={handleSubmit}>Sign Up</button>
-                <button type="button" onClick={() => changeView && changeView('login')}>Login</button>
-            </form>
+        <div className={styles.pageContainer}>
+            <div className={styles.card}>
+                <form className={styles.formContainer} onSubmit={e => e.preventDefault()}>
+                    <input className={styles.inputField} type="text" id="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
+                    <input className={styles.inputField} type="email" id="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
+                    <select className={styles.inputField} id="role" value={formData.role} onChange={handleChange} required>
+                        <option value="">Select Role</option>
+                        <option value="fashionDesigner">Fashion Designer</option>
+                        <option value="client">Client</option>
+                    </select>
+                    <input className={styles.inputField} type="password" id="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
+                    <Dropzone onDrop={handleImageDrop}>
+                        {({ getRootProps, getInputProps }) => (
+                            <section className={styles.dropzone}>
+                                <div {...getRootProps()}>
+                                    <input {...getInputProps()} />
+                                    {isLoading ? 'Uploading...' : 'Drag & drop an image here, or click to select one'}
+                                </div>
+                            </section>
+                        )}
+                    </Dropzone>
+                    <button type="button" className={styles.submitButton} onClick={handleSubmit}>Sign Up</button>
+                    <Link href="/login" legacyBehavior>
+                        <a className={styles.changeViewButton}>Login</a>
+                    </Link>
+                </form>
+            </div>
         </div>
     );
 };
 
-export default SignUp;
+export default SignUp

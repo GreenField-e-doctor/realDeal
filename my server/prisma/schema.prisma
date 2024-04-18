@@ -1,6 +1,6 @@
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:root@localhost:3306/mydbc"
+  url      = "mysql://Amine:wess2004wess@localhost:3306/mydbc"
 }
 
 generator client {
@@ -21,6 +21,7 @@ model User {
   conversations Conversation[] @relation(name: "ConversationParticipants")
   cart          Cart?          @relation(fields: [cartId], references: [id])
   cartId        Int?
+   comments  CommentPost[]
 }
 
 model Product {
@@ -75,15 +76,29 @@ model Message {
   conversation   Conversation? @relation(fields: [conversationId], references: [id])
 }
 
-model Post {
-  id      Int    @id @default(autoincrement())
-  title   String
-  content String
-  image   String
 
-  userId Int? // Foreign key
-  user   User? @relation(fields: [userId], references: [id])
+model Post {
+  id        Int          @id @default(autoincrement())
+  title     String
+  content   String
+  image     String
+  userId    Int          // Foreign key for associated user
+  user      User         @relation(fields: [userId], references: [id])
+  comments  CommentPost[] // This defines the one-to-many relationship
 }
+
+
+model CommentPost {
+  id        Int      @id @default(autoincrement())
+  content   String
+  createdAt DateTime @default(now())
+  postId    Int      // Foreign key that connects to the Post model
+  post      Post     @relation(fields: [postId], references: [id])
+  userId    Int      // Foreign key for the user who made the comment
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+
 
 model Nft {
   id           Int    @id @default(autoincrement())
@@ -109,3 +124,11 @@ model Shows {
   showing String
   imgUrl  String
 }
+
+model Comment {
+  id           Int       @id @default(autoincrement())
+  content      String
+  imageUrl     String   @db.VarChar(1000)   
+ 
+}
+
