@@ -1,0 +1,18 @@
+
+.body {
+    padding-left: 150px;
+    padding-right: 150px;
+      font-family: "PT Serif", sans-serif;
+      margin: 0px;
+      color: #ffffff;
+      background-color:hsla(280,33%,46%,1);
+      background-image:
+      radial-gradient(at 36% 14%, hsla(266,22%,36%,1) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsla(189,53%,11%,1) 0px, transparent 50%),
+       radial-gradient(at 0% 50%, hsla(355,44%,15%,1) 0px, transparent 50%),
+      radial-gradient(at 84% 85%, hsla(229,74%,12%,1) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(360,29%,24%,1) 0px, transparent 50%),
+      radial-gradient(at 4% 14%, hsla(360,47%,27%,1) 0px, transparent 50%);
+      font-size: 1.1em;
+    }
+  
