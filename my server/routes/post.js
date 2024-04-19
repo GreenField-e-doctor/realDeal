@@ -8,7 +8,7 @@ const {getAll,addPost,deleteOne}=require('../controllors/post')
 
 
 
-// router.get("/",getAll);
+router.get("/",getAll);
 
 router.post("/",addPost);
 router.delete("/:id",deleteOne);

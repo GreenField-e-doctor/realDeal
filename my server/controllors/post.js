@@ -3,6 +3,15 @@ const prisma = new PrismaClient();
 
 module.exports = {
     // Add a new `post` record
+    getAll: async function(req, res) {
+        try {
+            const posts = await prisma.post.findMany();
+            res.status(200).json(posts);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ msg: 'Error fetching posts.' });
+        }
+    },
     addPost: async function(req, res) {
         try {
             const post = await prisma.post.create({

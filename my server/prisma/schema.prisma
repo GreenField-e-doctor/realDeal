@@ -1,6 +1,6 @@
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:root@localhost:3306/mydbc"
+  url      = "mysql://root:route@localhost:3306/mydbc"
 }
 
 generator client {
@@ -79,7 +79,7 @@ model Post {
   id      Int    @id @default(autoincrement())
   title   String
   content String
-  image   String
+  image   String   @db.VarChar(1000)
 
   userId Int? // Foreign key
   user   User? @relation(fields: [userId], references: [id])

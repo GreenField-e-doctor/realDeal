@@ -1,59 +1,115 @@
 'use client'
 
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../lib/hook'; 
-import { RootState } from '../lib/store';
-import { login } from "../lib/features/userSlice";
+import React, { useEffect, useState } from 'react';
+import { FaHeart } from 'react-icons/fa';
+import axios from 'axios';
 
-interface LoginProps {
-  changeView: (view: string) => void;
+interface Post {
+  id: number;
+  title: string;
+  content: string;
+  image: string;
+  liked: boolean;
 }
 
-const Login: React.FC<LoginProps> = ({ changeView }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const error = useSelector((state: RootState) => state.user.error);
-  const dispatch = useAppDispatch();
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+  image: string;
+}
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+interface Props {
+  user: User;
+  changeView: () => void;
+}
+
+const Userprofile: React.FC<Props> = ({ user, changeView }) => {
+  const [dataP, setData] = useState<Post[]>([]);
+  const [updatee, setUpdatee] = useState<boolean>(false);
+  const [title, setTitle] = useState<string>('');
+  const [content, setContent] = useState<string>('');
+  const [image, setImage] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [name, setname] = useState<string>('');
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpen1, setIsModalOpen1] = useState<boolean>(false);
+
+  const fetchpost = async () => {
+    try {
+      const response = await axios.get<Post[]>("http://localhost:3000/api/post/");
+      setData(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+  const addpost = async (body: Partial<Post>) => {
+    try {
+      const response = await axios.post<Post>("http://localhost:3000/api/post/", body);
+      return response.data;
+    } catch (error) {
+      console.error('Error adding post:', error);
+      throw error;
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    dispatch(login({email, password}));
+  const deletepost = (id: number) => {
+    axios.delete(`http://localhost:3000/api/post/${id}`).then(() => setUpdatee(!updatee)).catch((error) => console.log(error));
   };
 
-  const handleSignUp = () => {
-    changeView('signup');
+  const toggleLike = (index: number) => {
+    const newData = [...dataP];
+    newData[index].liked = !newData[index].liked;
+    setData(newData);
   };
+
+  const updateS = (id: number, obj: Partial<User>) => {
+    axios.put(`http://localhost:3000/api/user/${id}`, obj).then(() => setUpdatee(!updatee));
+  };
+
+  const handleAddPost = async () => {
+    try {
+      const newPost = await addpost({ title, content, image });
+      setData(dataP => [...dataP, { ...newPost, liked: false }]);
+      setTitle('');
+      setContent('');
+      setImage('');
+      setIsModalOpen(false);
+      setUpdatee(!updatee);
+    } catch (error) {
+      console.error("Error adding post:", error);
+    }
+  };
+
+  const handleDelete = (id: number) => {
+    deletepost(id);
+  };
+
+  const handleUpdate = () => {
+    updateS(user.id, {
+      email: email !== '' ? email : user.email,
+      password: password !== '' ? password : user.password,
+      name: name !== '' ? name : user.name,
+    });
+
+    setEmail('');
+    setPassword('');
+    setname('');
+    setIsModalOpen1(false);
+  };
+
+  useEffect(() => {
+    fetchpost();
+  }, [updatee]);
 
   return (
-    <div className="login-form" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '12px' }}>
-      <div>
-        <h2 style={{color:'white'}}>Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email" style={{color:'white'}}>Email</label>
-            <input type="email" id="email" value={email} onChange={handleEmailChange} required className="form-control" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password" style={{color:'white'}}>Password</label>
-            <input type="password" id="password" value={password} onChange={handlePasswordChange} required className="form-control" />
-          </div>
-          {error && <p style={{color:'red'}}>{error}</p>}
-          <button type="submit" className="btn btn-primary">Login</button>
-          <p>No account?</p>
-          <button type="button" onClick={handleSignUp} className="btn btn-secondary">Sign Up</button>
-        </form>
-      </div>
+    <div>
+      {/* Your JSX content here */}
     </div>
   );
 };
 
-export default Login;
+export default Userprofile;

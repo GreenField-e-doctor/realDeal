@@ -5,7 +5,7 @@ import axios from 'axios';
 interface ExploreItem {
     id: number;
     name: string;
-    imgP: string;
+    imgP: string; 
     imgB: string;
     description: string;
 }
