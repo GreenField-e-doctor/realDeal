@@ -1,7 +1,6 @@
 
 .body {
-    padding-left: 150px;
-    padding-right: 150px;
+   
       font-family: "PT Serif", sans-serif;
       margin: 0px;
       color: #ffffff;
@@ -15,4 +14,31 @@
       radial-gradient(at 4% 14%, hsla(360,47%,27%,1) 0px, transparent 50%);
       font-size: 1.1em;
     }
-  
+    .custom-button{
+      background: linear-gradient(214.02deg, #B75CFF 6.04%, #671AE4 92.95%);
+      height: 30px;
+      width: 120px;
+      border-radius: 20px;
+    margin-left: 10px;
+   
+    }
+.pipsum{
+padding-right: 160px;
+}
+
+
+.mb-3{
+  justify-content: flex-start;
+  display: flex;
+}
+.like3d{
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+.text-3xl{
+ 
+  height: 10px;
+  margin-left: 20px;
+  margin-top: -70px;
+}

@@ -104,7 +104,7 @@ model Nft {
   id           Int    @id @default(autoincrement())
   UncommenRare Int
   price        Int
-  imgUrl       String
+  imgUrl       String   @db.VarChar(1000)
   genre        String
   status       String
   comingSoon   String

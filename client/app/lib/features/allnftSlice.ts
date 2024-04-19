@@ -28,6 +28,8 @@ export const fetchAllnfts = createAsyncThunk<Nft[], Partial<AllnftState>>('http:
     }
 
     const response = await axios.get<Nft[]>(`http://localhost:1128/api/allnft/`, { params: queryParams });
+    console.log(response);
+    
     return response.data;
   } catch (error) {
     throw new Error('Failed to fetch allnfts');

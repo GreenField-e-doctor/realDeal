@@ -6,7 +6,7 @@ import { Model } from './model';
 const Human = () => {
   return (
     <div className='bg-gray-400'>
-      <Canvas style={{ width: '300px', height: '400px' }}>
+      <Canvas style={{ width: '350px', height: '400px' }}>
         <Suspense fallback={null}>
           <ambientLight intensity={0.5} />
           <directionalLight position={[10, 0, 5]} intensity={1} />
