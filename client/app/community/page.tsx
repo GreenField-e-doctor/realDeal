@@ -4,39 +4,68 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../lib/hook';
 import { RootState } from '../lib/store';
 import { fetchPosts } from '../lib/features/postSlice';
+import { addComment, fetchCommentsByPost } from '../lib/features/commentSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons'; 
+import { faHeart as farHeart, faHeart as fasHeart, faUser } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles/community.module.css';
-import communityImage from '../client/app/community/community.png'; 
-
+import { User } from '../lib/features/userSlice';
 
 interface Post {
   id: number;
   title: string;
   content: string;
   image: string;
-  user: { name: string } | null;
+  user: {
+    name: string;
+    image?: string;
+  } | null;
+}
+
+interface Comment {
+  id: number;
+  content: string;
+  postId: number;
+  userId: number;
+  user: User | undefined;  // Adjusted to acknowledge that user might be undefined
 }
 
 const Community = () => {
   const dispatch = useAppDispatch();
   const posts = useSelector((state: RootState) => state.post.posts);
-  const isLoading = useSelector((state: RootState) => state.post.status) === 'loading';
-  const [comments, setComments] = useState<{ [key: number]: string }>({});
+  const commentsByPostId = useSelector((state: RootState) => state.comment.commentsByPostId);
+  const isPostsLoading = useSelector((state: RootState) => state.post.status) === 'loading';
+  const isCommentsLoading = useSelector((state: RootState) => state.comment.status) === 'loading';
+  const isLoading = isPostsLoading || isCommentsLoading;
+  const [commentInputs, setCommentInputs] = useState<{ [key: number]: string }>({});
   const [likedPosts, setLikedPosts] = useState<{ [key: number]: boolean }>({});
 
   useEffect(() => {
+    console.log("Fetching posts...");
     dispatch(fetchPosts());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (posts.length > 0) {
+      console.log(`Fetching comments for ${posts.length} posts...`);
+      posts.forEach(post => {
+        dispatch(fetchCommentsByPost(post.id));
+      });
+    }
+  }, [dispatch, posts.length]);
+
   const handleCommentChange = (postId: number, text: string) => {
-    setComments({ ...comments, [postId]: text });
+    setCommentInputs({ ...commentInputs, [postId]: text });
   };
 
   const handleCommentSubmit = (postId: number) => {
-    console.log(`Comment on post ${postId}:`, comments[postId]);
-    setComments({ ...comments, [postId]: '' });
+    const content = commentInputs[postId];
+    if (!content) return; // Prevent empty comments
+    dispatch(addComment({
+      content,
+      postId,
+      userId: 1 // This should be dynamically determined based on the logged-in user
+    }));
+    setCommentInputs({ ...commentInputs, [postId]: '' });
   };
 
   const toggleLike = (postId: number) => {
@@ -50,12 +79,12 @@ const Community = () => {
   return (
     <div className={styles.feedContainer}>
       <h1 className={styles.feedTitle}>Feeds</h1>
-      {posts.map((post: Post) => (
+      {posts.map((post) => (
         <div key={post.id} className={styles.postCard}>
           <div className={styles.postHeader}>
-            <img src="/community.png" alt="User Avatar" className={styles.userAvatar} />
+            <FontAwesomeIcon icon={faUser} className={styles.userAvatar} />
             <div className={styles.userInfo}>
-              <h3 className={styles.userName}>{post.user?.name}</h3>
+              <h3 className={styles.userName}>{post.user ? post.user.name : 'Loading...'}</h3>
               <p className={styles.postTime}>Just now</p>
             </div>
           </div>
@@ -64,18 +93,23 @@ const Community = () => {
             <img src={post.image} alt={post.title} className={styles.postImage} />
           </div>
           <div className={styles.postActions}>
-          <button className={styles.likeButton} onClick={() => toggleLike(post.id)}>
+            <button className={styles.likeButton} onClick={() => toggleLike(post.id)}>
               <FontAwesomeIcon icon={likedPosts[post.id] ? fasHeart : farHeart} color={likedPosts[post.id] ? 'red' : 'black'} />
-            </button>     
-                   <button className={styles.commentButton}>Comment</button>
+            </button>
+            {/* <button className={styles.commentButton}>Comment</button> */}
             <button className={styles.shareButton}>Share</button>
           </div>
           <div className={styles.commentSection}>
+            {commentsByPostId[post.id]?.map(comment => (
+              <div key={comment.id} className={styles.comment}>
+                <strong>{comment.user?.name || 'Unknown User'}:</strong> {comment.content}
+              </div>
+            ))}
             <input
               type="text"
               placeholder="Add a comment..."
-              value={comments[post.id] || ''}
-              onChange={(e) => handleCommentChange(post.id, e.target.value)}
+              value={commentInputs[post.id] || ''}
+              onChange={e => handleCommentChange(post.id, e.target.value)}
               className={styles.commentInput}
             />
             <button

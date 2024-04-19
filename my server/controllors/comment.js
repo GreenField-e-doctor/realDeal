@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 // Add a comment to a post
-exports.addComment = async (req, res) => {
+exports.addCommentt = async (req, res) => {
   try {
     const { content, postId, userId } = req.body;
     const comment = await prisma.commentPost.create({

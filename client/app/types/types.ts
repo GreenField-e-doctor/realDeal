@@ -42,10 +42,18 @@ export interface Comment {
   createdAt: string;
   postId: number;
   userId: number;
+  user: User;
+
 }
 
 export interface CommentState {
   comments: Comment[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
+}
+
+export interface User {
+  id: number;
+  name: string;
+  image?: string;
 }

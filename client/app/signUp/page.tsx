@@ -2,8 +2,10 @@
 import React, { useState } from 'react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import { useSelector } from 'react-redux'; // Added to use useSelector
 import { useAppDispatch } from '../lib/hook';
 import { registerUser, setError } from '../lib/features/userSlice';
+import { RootState } from '../lib/store'; // Import RootState if not already imported
 import { SignUpProps, SignUpData } from '../types/types';
 import Link from 'next/link'; 
 import styles from '../styles/SignUp.module.css'; 
@@ -20,6 +22,7 @@ const SignUp: React.FC<ExtendedSignUpProps> = ({ changeView }) => {
     });
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useAppDispatch();
+    const error = useSelector((state: RootState) => state.user.error); // Use error from Redux state
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
         setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -47,25 +50,27 @@ const SignUp: React.FC<ExtendedSignUpProps> = ({ changeView }) => {
             setIsLoading(false);
         }
     };
-    const handleSubmit = () => {
-        if (formData.image) {
-            dispatch(registerUser(formData))
-              .then(() => {
-                window.location.href = '/login'; // Direct navigation to login page
-              })
-              .catch((error) => {
-                console.error('Registration error:', error);
-                // Handle registration errors here
-              });
-        } else {
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (!formData.image) {
             dispatch(setError('Please upload an image.'));
+            return;
         }
+        dispatch(registerUser(formData))
+          .unwrap()
+          .then(() => {
+            window.location.href = '/login'; // Direct navigation to login page after successful registration
+          })
+          .catch((error) => {
+            console.error('Registration error:', error);
+          });
     };
 
     return (
         <div className={styles.pageContainer}>
             <div className={styles.card}>
-                <form className={styles.formContainer} onSubmit={e => e.preventDefault()}>
+                <form className={styles.formContainer} onSubmit={handleSubmit}>
                     <input className={styles.inputField} type="text" id="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
                     <input className={styles.inputField} type="email" id="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
                     <select className={styles.inputField} id="role" value={formData.role} onChange={handleChange} required>
@@ -84,9 +89,10 @@ const SignUp: React.FC<ExtendedSignUpProps> = ({ changeView }) => {
                             </section>
                         )}
                     </Dropzone>
-                    <button type="button" className={styles.submitButton} onClick={handleSubmit}>Sign Up</button>
+                    {error && <p className={styles.errorMessage}>{error}</p>}
+                    <button type="submit" className={styles.submitButton}>Sign Up</button>
                     <Link href="/login" legacyBehavior>
-                        <a className={styles.changeViewButton}>Login</a>
+                        <a className={styles.changeViewButton}>Already have an account? Log in</a>
                     </Link>
                 </form>
             </div>
@@ -94,4 +100,4 @@ const SignUp: React.FC<ExtendedSignUpProps> = ({ changeView }) => {
     );
 };
 
-export default SignUp
+export default SignUp;

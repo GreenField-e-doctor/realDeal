@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 // import Market from './Market';
-import styles from "../styles/homepage.style.css";
+import styles from "../styles/homepage.module.css";
 import NavBar from "./NavBar";
 import style from "../styles/explore.module.css";
 import Human from "../meta/3dModel/human";
@@ -36,7 +36,7 @@ const Homepage = () => {
   };
 
   return (
-    <div>
+    <div className={style['all']}>
       <NavBar />
       <div style={{ paddingBottom: "100px" }}>
         {/* <Navbar user={user} changeView={changeView}/> */}
