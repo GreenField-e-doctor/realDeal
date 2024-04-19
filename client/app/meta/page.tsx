@@ -146,6 +146,92 @@ const ThreeModelViewer: React.FC = () => {
         </div>
       </div>
       </div>
+      <div className="StoresBody">
+        <p className="ml-20">Stores</p>
+        <br/>
+        <div className="flex flex-row gap-5 ml-40 ">
+          <div className={style["StoreCard1"]}>
+
+        <img
+                  src="https://s3-alpha-sig.figma.com/img/8f4c/0352/5d9737a3ace96ae8953d55c085c02e36?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ri1SVwMeTP-5ZWQ3ftMEWilV2yNe9VOlQ8B68mCnkNFsqBMDVJnos0h2WxzVEzaN4WDe3z-qTlEtK40SPCEH32lqHmfmTWQlpNoHCofhf07zjitm77AKpyrgd9NWhSmNgJuxsMDUgS3T-BbVlsJbBThBWLN-FydU4ubdstBrOyHmKsy7yTWih-3WYZRjL2UhL-pL2fP~kvPC8UXAXTvQXuRB1bd9hCM0wW61cIkWbLF7uQG435Jbw8O50McjfBXyx3UzgV~OnuX46XlvZEnaWBPL3ZdMj-8-x8YEPU8zgyBtA5FpUxCYzP~iDDO~V76yUfKTbVXHHZvDv3bS6ttagA__"
+                  alt="Product"
+                  style={{
+                    width: "300px",
+                    height: "200px",
+                    borderRadius: "20px",
+                  }}/>
+                  <img src="https://s3-alpha-sig.figma.com/img/dbac/df43/ad865d79d09d456e595e6f2e33060422?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TZSFOsX2ytvioWTQiRioTtk6wWpwgboKNgiQc2e1QbsLLvt-R2mvTnrexE5n0uo9hEtQ1UH0Rr2mRglaAzzE~NFLY0nUe0P3~KQBW0CBkgK2UJONKAQGWuDSNODz61VhH~uDuV87B9jkq7aLc3759cqTXR7vbUDUtc2ATLKw7bGdq0sJkpRzZPFEiqIFE5OM4obr34cGp6EZFhJiifEBvaLWkhJrQZcMfxIhwwPAHuZ3zuVD-byJDYl7PZTgne8nziq7h0lXY3y~-nL5qQkJZM5mtnW5TSYybBuWmfj2~jEjypT4IrlmYYYo~p0en0AM0xbL9Mqiq8NQ~DcAh8Ekiw__"
+                  style={{
+                    width: "90px",
+                    height: "90px",
+                    borderRadius: "80px",
+                    marginLeft: "105px",
+                    marginTop: "-20px",
+                  }}
+                  />
+                
+                  <p className={style["PStoreCard"]}>Zalando</p>
+                 
+                  <p className={style["PStoreCard2"]}>Lorem ipsum dolor sit amet, <br/>consectetur adipiscing elit.</p>
+  
+                  <button className={style["button-storescard"]}>+ Follow</button>
+          </div>
+          <div className={style["StoreCard1"]}>
+
+        <img
+                  src="https://s3-alpha-sig.figma.com/img/c27e/9a55/ed3a7e31ab50c20fb6e28b0491a8dc13?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=hot3HpDeyxHk3nelaYCn-nwwMrhWmK~NbC4pIlthpfytOg~kRAsfXZbH0p-csr~Orh-fM8Zmh4v2JWJ5pBnXJ2vEpnckr1VBo~n06G85-f4l2Hz6sFFpD2uz1RwK2eQw5x4FUF7dVvEQeIPkd-YOT4h3hxgCS97QuQtgVn7HsgUCwwededL26fX7CQDlA36RDVkv0Vuqhwk-MbvKNZqnCxc9Z-rwIibmp9eZG3BwLjxrI22rRqK4-0OhD83hGPnZNMX6yRLpTdedNkji91s9Fq998NJGbz6pFRn-bTNrv1SBKJHDuHmDrkaFhO9Elg2V2ZOg4yHQ4JpBlqEPICupxg__"
+                  alt="Product"
+                  style={{
+                    width: "300px",
+                    height: "200px",
+                    borderRadius: "20px",
+                  }}/>
+                  <img src="https://s3-alpha-sig.figma.com/img/f680/0697/0dcb96fe1a08d98a4ef82be39ed7a258?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dxDgy3NkymxB7feVg~S0Cr~N8GKF~EI~4YTbfbLsrWOiZ3oENlQcnddaxc-aF3tsr6~z-iWJF2BdFQHRnySko47WYgmOLDA929RAvHz122V53Ea~DN5sipgpt8enuZm~NU6enfGudpT1PWDU~0LqZ0uC3LmlKrP5574MBn07sT8NXiHxNQLboeXcfXHZfSh-dyx2hbYpbND22MqW7KxxB42vvI56eMYrfJIKIEWll9SDXDnBVyYl3RnNZOGVc4Fy2j-JtHVrZfKjpUrWJNIxOPISXmqVlr5hOB9NSMzH3z7Urlxu4-OWamVTOfCxdpFaJ~ihA6QtXl9dRIn9lejmBA__"
+                  style={{
+                    width: "90px",
+                    height: "90px",
+                    borderRadius: "80px",
+                    marginLeft: "105px",
+                    marginTop: "-20px",
+                  }}
+                  />
+                
+                  <p className={style["PStoreCard"]}>Zara</p>
+                 
+                  <p className={style["PStoreCard2"]}>Lorem ipsum dolor sit amet, <br/>consectetur adipiscing elit.</p>
+  
+                  <button className={style["button-storescard"]}>+ Follow</button>
+          </div>
+          <div className={style["StoreCard1"]}>
+
+        <img
+                  src="https://s3-alpha-sig.figma.com/img/7f06/0f98/68f6e3709e0568b8d2226f9d837e833b?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=X3hQhR7EaoWdVwHQXIrzMpIh1O~yRH0i6j2iDTP8YqcxzkCPlXDIcHxGrBd6BmjZoaY2jNiJLsBS6qyMxSRNvq-JYDUEMCLN5BjMuX-VbzeLDOc7GewYqPvN~Uv0p~mw~QnEPDFjJjAyVr1Y0BVYhZYgb-NDiO3ofuhZd5yhDu9hM8ZhjZeoClcaxwz2ssmzfhPPWhF0vxp8YW8a~KP1oF-sVyMhvCHHMa7F089sfr473QrrF3lqzyP2xMHnQJmk6Ma9q7HLTdOikQ18MPTYQMfKCIx8Zb-Z7MctzpL2PR6rW4S-2PahBJwBuCfOT~X96Erhb~LU4MTFnj8RUWNaYQ__"
+                  alt="Product"
+                  style={{
+                    width: "300px",
+                    height: "200px",
+                    borderRadius: "20px",
+                  }}/>
+                  <img src="https://s3-alpha-sig.figma.com/img/9966/fb19/afab57c29962418f871c706f9b54eea8?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=YGVqoHCPcgwnxYCfIwEEZRaD2KFxA5ilqyQc8BYoFEukqmxsQgkjMY~qLdtt7RK3A5yiuDwKPNgsvOQ1AD3aGAOBs44K0YmKPJYk7og87Enq5RX1woIQY2rsOckSWjokWal2Y8cNxIKmL-S2Fcwhf4rZGi3qqj~iBI9VhB6yhzHjqm~XzdIg61GkHGmdwUYZfgVwf1jdjjsBNnvbSa9VhaLGkkiDv~PU9y4z0tojFzEmKWywxQ0unRkvlc6KTPf5Zvh38a~qKA~vmKzTtr78xye-eKzNAuseAAN7xBZEQDlCjCNcqLXXIa~egFaZdriUsOmLt~xTJoFEOrr05hihJw__"
+                  style={{
+                    width: "90px",
+                    height: "90px",
+                    borderRadius: "80px",
+                    marginLeft: "105px",
+                    marginTop: "-20px",
+                  }}
+                  />
+                
+                  <p className={style["PStoreCard"]}>Cartier</p>
+                 
+                  <p className={style["PStoreCard2"]}>Lorem ipsum dolor sit amet, <br/>consectetur adipiscing elit.</p>
+  
+                  <button className={style["button-storescard"]}>+ Follow</button>
+          </div>
+
+        </div>
+
+      </div>
       </div>
    
   );

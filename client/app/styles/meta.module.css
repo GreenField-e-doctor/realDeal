@@ -50,3 +50,24 @@ display: flex;
   font-size: 20px;
   margin-top: 98px;
 }
+.StoreCard1{
+  border-radius: 20px;
+  width: 300px;
+  height: 400px;
+  background-color: #FFFFFF1A;
+ 
+}
+.PStoreCard{
+  padding-left: 115px;
+}
+.PStoreCard2{
+  padding-left: 35px;
+}
+.button-storescard{
+  background: linear-gradient(214.02deg, #B75CFF 6.04%, #671AE4 92.95%);
+  height: 30px;
+  width: 190px;
+  border-radius: 6px;
+margin-left: 45px;
+margin-top: 10px;
+}
