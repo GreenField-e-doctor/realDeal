@@ -19,8 +19,8 @@ const Video: React.FC = () => {
   
   useEffect(() => {
     dispatch(fetchComments() as any);
-    fetchAllnfts({ status: 'all', genre: 'all' })
-    {console.log(nfts)}
+   dispatch<any>(fetchAllnfts({ status: 'all', genre: 'all' }))
+    {console.log(nfts,'ttffft')}
   }, [dispatch]);
   
   const handleCommentSubmit = () => {
@@ -52,13 +52,20 @@ const Video: React.FC = () => {
       </div>
       <div className={styles["Twoboxes"]}>
           <div className={styles["box2"]}><h4 className={styles['hChat']}>Representing Products</h4>
-        
+        <br/>
+        <div className={styles["scrolldiv1"]}>
           {nfts.map((nft, index) => (
             <div key={index}>
-              <p>{nft.imgUrl}</p>
+             
+             <div className={styles['divpostfashionShow']}  key={nft.id}>
+              {nft.imgUrl &&<img className={styles['imgpostFashionshow']} src={nft.imgUrl} alt="Comment Image" />}
+              <p>{nft.comingSoon}</p>
+            </div>
             
             </div>
           ))}
+            </div>
+
           </div>
       <div className={styles["box1"]} >
           <h4 className={styles['represntig']}>Chat</h4>

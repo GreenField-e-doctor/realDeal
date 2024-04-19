@@ -25,7 +25,10 @@
 .pipsum{
 padding-right: 160px;
 }
-
+.flex-flex-col{
+display: flex;
+ gap: 20px;
+}
 
 .mb-3{
   justify-content: flex-start;

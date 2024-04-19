@@ -8,6 +8,7 @@ export interface Nft {
   UncommenRare: string;
   price: string;
   genre: string;
+  comingSoon: string;
 }
 export interface AllnftState {
   allnft: Nft[];
@@ -17,7 +18,8 @@ export interface AllnftState {
   error: string | null;
 }
 
-export const fetchAllnfts = createAsyncThunk<Nft[], Partial<AllnftState>>('http://localhost:1128/api/allnfts/fetchAllnfts', async (params) => {
+
+  export const fetchAllnfts = createAsyncThunk<Nft[], Partial<AllnftState>>('http://localhost:1128/api/allnft', async (params) => {
   try {
     let queryParams: Partial<AllnftState> = {};
     if (params?.status !== 'all') {
@@ -27,14 +29,17 @@ export const fetchAllnfts = createAsyncThunk<Nft[], Partial<AllnftState>>('http:
       queryParams.genre = params.genre;
     }
 
-    const response = await axios.get<Nft[]>(`http://localhost:1128/api/allnft/`, { params: queryParams });
-    console.log(response);
-    
+    const response = await axios.get<Nft[]>('http://localhost:1128/api/allnft', { params: queryParams });
+    console.log(response.data,'');
+
     return response.data;
   } catch (error) {
     throw new Error('Failed to fetch allnfts');
   }
 });
+
+
+
 
 export const allnftsSlice = createSlice({
   name: 'allnfts',
@@ -69,4 +74,4 @@ export const allnftsSlice = createSlice({
   },
 });
 
-export const { setStatusFilter, setGenreFilter } = allnftsSlice.actions;
+export const { setStatusFilter, setGenreFilter} = allnftsSlice.actions;
