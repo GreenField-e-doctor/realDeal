@@ -45,7 +45,7 @@ type BuyNowAction = ReturnType<typeof makePaymentRequest | typeof makePaymentSuc
 export const buyNow = (amount: number) => async (dispatch: Dispatch<BuyNowAction>) => {
   try {
     dispatch(makePaymentRequest());
-    const res = await axios.post<{ result: { link: string } }>("http://localhost:3000/api/payment", { amount });
+    const res = await axios.post<{ result: { link: string } }>("http://localhost:1128/api/payment", { amount });
     const { link }:any = res.data.result;
 
     dispatch(makePaymentSuccess(link));

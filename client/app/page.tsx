@@ -1,23 +1,31 @@
 "use client";
-import React, { useState, useRef } from "react";
-import Footer from '../app/homepage/Footer';
-
-import styles from "../app/styles/homepage.module.css";
+import React, { useState, useRef,useEffect } from "react";
+// import Navbar from './navbar';
+// import Footer from './footer';
+// import Footer from "./Footer";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+// import Market from './Market';
+import styles from "../app/styles/homepage.module.css"
 import NavBar from "../app/homepage/NavBar";
-import style from "../app/styles/explore.module.css";
+import style from "../app/styles/explore.module.css"
+import { fetchPosts, } from "../app/lib/features/postSlice"
+import { AppDispatch, RootState } from '../app/lib/store';
 
+import { useAppDispatch,useAppSelector } from "../app/lib/hook";
+import { Post } from "../app/types/types";
+import { fetchExploreItems } from "../app/lib/features/exploreslice";
 const Homepage = () => {
-  const [liked, setLiked] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const dispatch = useAppDispatch()
+  const posts = useAppSelector(state => state.post.posts); 
+  const exploreItems = useAppSelector((state: RootState) => (state as any).explore.exploreItems);
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+    dispatch(fetchExploreItems())
+  }, [dispatch]);
   const dummyData = [
     { id: 1, imageUrl: 'https://s3-alpha-sig.figma.com/img/6ad7/0ad3/c0d9b88524001d4a23da533d7258a549?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BrNLgOcVYW1YOZfVjm9P3f9dm0DidawCveqWkx4Y3p76G291i8NyKphv2tbgghZhg0jxQgN5Z0K-FtBUPG1z9ALPhwInI0FDNX5YR1vRx8MvA-TFdEUo6BgQh3UEC9FrDb2vUgxfgGHKjC-YVeDwbtmqiofGE6HLJbItEv0jDngdT6oegPGr8b7d~wQ8xZx2haPlt5-ELZdrbpfwOmEcrLBply69IjErhin9roIL5L8LDDdSNxzdNSnfgaPOnSSaKrPRLr5WiAtEd6Sb7Cx1eFA8IuEjJgDG60t5dbxb-gfN2cU0Wol41PnzBdGqevBQ0J0~JSXzKNnKmwnbS3~HHg__', username: '@ipsum', description: 'lorem', price: '0.5 ETH' },
     { id: 2, imageUrl: 'https://s3-alpha-sig.figma.com/img/6ad7/0ad3/c0d9b88524001d4a23da533d7258a549?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BrNLgOcVYW1YOZfVjm9P3f9dm0DidawCveqWkx4Y3p76G291i8NyKphv2tbgghZhg0jxQgN5Z0K-FtBUPG1z9ALPhwInI0FDNX5YR1vRx8MvA-TFdEUo6BgQh3UEC9FrDb2vUgxfgGHKjC-YVeDwbtmqiofGE6HLJbItEv0jDngdT6oegPGr8b7d~wQ8xZx2haPlt5-ELZdrbpfwOmEcrLBply69IjErhin9roIL5L8LDDdSNxzdNSnfgaPOnSSaKrPRLr5WiAtEd6Sb7Cx1eFA8IuEjJgDG60t5dbxb-gfN2cU0Wol41PnzBdGqevBQ0J0~JSXzKNnKmwnbS3~HHg__', username: '@lorem', description: 'ipsum', price: '0.7 ETH' },
@@ -447,7 +455,6 @@ const Homepage = () => {
       <br />
     </div>
     </div>
-    <Footer/>
     </div>
   );
 };
