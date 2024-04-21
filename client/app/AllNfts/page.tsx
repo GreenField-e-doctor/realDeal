@@ -5,6 +5,8 @@ import { fetchAllnfts, setStatusFilter, setGenreFilter,AllnftState } from '../li
 import styles from '../styles/AllNfts.module.css';
 import style from '../styles/homepage.module.css';
 import axios from 'axios';
+import NavBar from '../homepage/NavBar';
+import Footer from '../homepage/Footer';
 interface PageProps {
   changeView: (view: string) => void;
 }
@@ -45,6 +47,7 @@ const handleGenreChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 
   return (
     <div className={styles["all"] }>
+      <NavBar/>
      <div className={`${styles["row"]}`}>
      <div className={`${styles['col-lg-3']} ${styles['filter-container']}`}>
         <button onClick={() => dispatch<any>(fetchAllnfts({ status: 'all', genre: 'all' }))}>All Nfts</button>
@@ -122,6 +125,7 @@ const handleGenreChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 
     </div>
 </div>
+<Footer/>
 </div>)}
 
 

@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchExploreItems } from '../lib/features/exploreslice';
 import { AppDispatch, RootState } from '../lib/store';
 import style from '../styles/Explore.module.css';
-
+import NavBar from '../homepage/NavBar';
+import Footer from '../homepage/Footer';
 const Explore: React.FC = () => {
     const exploreItems = useSelector((state: RootState) => (state as any).explore.exploreItems);
     const status = useSelector((state: RootState) => (state as any).explore.status);
@@ -17,6 +18,7 @@ const Explore: React.FC = () => {
 
     return (
         <div className={style['all']}>
+            <NavBar/>
             {/* <div className={style['title-container']}> */}
             <div className={style['titlee']}>
             <h2 >Explore Collections</h2>
@@ -45,6 +47,7 @@ const Explore: React.FC = () => {
                     </div>
                 ))}
             </div>
+            <Footer/>
         </div>
     );
 };

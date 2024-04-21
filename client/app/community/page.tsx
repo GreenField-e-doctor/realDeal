@@ -9,7 +9,8 @@ import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons'; 
 import styles from '../styles/community.module.css';
 import communityImage from '../client/app/community/community.png'; 
-
+import NavBar from '../homepage/NavBar';
+import Footer from '../homepage/Footer';
 
 interface Post {
   id: number;
@@ -49,6 +50,7 @@ const Community = () => {
 
   return (
     <div className={styles.feedContainer}>
+      <NavBar/>
       <h1 className={styles.feedTitle}>Feeds</h1>
       {posts.map((post: Post) => (
         <div key={post.id} className={styles.postCard}>
@@ -87,6 +89,7 @@ const Community = () => {
           </div>
         </div>
       ))}
+      <Footer/>
     </div>
   );
 };
