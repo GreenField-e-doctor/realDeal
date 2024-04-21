@@ -8,6 +8,7 @@ export interface Nft {
   UncommenRare: string;
   price: string;
   genre: string;
+  comingSoon: string;
 }
 export interface AllnftState {
   allnft: Nft[];
@@ -17,7 +18,8 @@ export interface AllnftState {
   error: string | null;
 }
 
-export const fetchAllnfts = createAsyncThunk<Nft[], Partial<AllnftState>>('http://localhost:1128/api/allnfts/fetchAllnfts', async (params) => {
+
+  export const fetchAllnfts = createAsyncThunk<Nft[], Partial<AllnftState>>('http://localhost:1128/api/allnft', async (params) => {
   try {
     let queryParams: Partial<AllnftState> = {};
     if (params?.status !== 'all') {
@@ -33,6 +35,9 @@ export const fetchAllnfts = createAsyncThunk<Nft[], Partial<AllnftState>>('http:
     throw new Error('Failed to fetch allnfts');
   }
 });
+
+
+
 
 export const allnftsSlice = createSlice({
   name: 'allnfts',

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -51,12 +51,30 @@ const Login: React.FC<LoginProps> = ({ changeView }) => {
         <h2 className={styles.heading}>Login</h2>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
           <div className={styles.formGroup}>
-            <label htmlFor="email" className={styles.label}>Email</label>
-            <input type="email" id="email" value={email} onChange={handleEmailChange} required className={styles.inputField} />
+            <label htmlFor="email" className={styles.label}>
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={handleEmailChange}
+              required
+              className={styles.inputField}
+            />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="password" className={styles.label}>Password</label>
-            <input type="password" id="password" value={password} onChange={handlePasswordChange} required className={styles.inputField} />
+            <label htmlFor="password" className={styles.label}>
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={handlePasswordChange}
+              required
+              className={styles.inputField}
+            />
           </div>
           {error && <p className={styles.errorMessage}>{error}</p>}
           <button type="submit" className={styles.submitButton}>Login</button>
