@@ -17,7 +17,8 @@ export interface AllnftState {
   error: string | null;
 }
 
-export const fetchAllnfts = createAsyncThunk<Nft[], Partial<AllnftState>>('http://localhost:1128/api/allnfts/fetchAllnfts', async (params) => {
+
+  export const fetchAllnfts = createAsyncThunk<Nft[], Partial<AllnftState>>('http://localhost:1128/api/allnft', async (params) => {
   try {
     let queryParams: Partial<AllnftState> = {};
     if (params?.status !== 'all') {
@@ -26,13 +27,18 @@ export const fetchAllnfts = createAsyncThunk<Nft[], Partial<AllnftState>>('http:
     if (params?.genre !== 'all') {
       queryParams.genre = params.genre;
     }
-
-    const response = await axios.get<Nft[]>(`http://localhost:1128/api/allnft/`, { params: queryParams });
+    
+    const response = await axios.get<Nft[]>(`http://localhost:1128/api/allnft`, { params: queryParams });
+    console.log(response.data,'');
+    
     return response.data;
   } catch (error) {
     throw new Error('Failed to fetch allnfts');
   }
 });
+
+
+
 
 export const allnftsSlice = createSlice({
   name: 'allnfts',
@@ -67,4 +73,20 @@ export const allnftsSlice = createSlice({
   },
 });
 
-export const { setStatusFilter, setGenreFilter } = allnftsSlice.actions;
+export const { setStatusFilter, setGenreFilter} = allnftsSlice.actions;
+
+// {
+//   "UncommenRare": 1468,
+
+//   "price": 420,
+
+//   "imgUrl": "https://public.nftstatic.com/static/nft/webp/nft-extdata-loader/S3/1681534865221_gp1b1cdn8bcm3no1ajlq5zumhx5957y2_400x400.webp",
+  
+//   "genre": "Women",
+  
+//   "status": "Available",
+  
+//   "comingSoon": ""
+  
+  
+// }
