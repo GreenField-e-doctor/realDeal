@@ -1,21 +1,20 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useAppDispatch } from "../lib/hook";
-import { RootState } from "../lib/store";
-import { login } from "../lib/features/userSlice";
-// import Link from 'next/link';
-import styles from "../styles/Login.module.css";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../lib/hook';
+import { RootState } from '../lib/store';
+import { login, setError } from "../lib/features/userSlice";
+import Link from 'next/link';
+import styles from '../styles/Login.module.css';
 
 interface LoginProps {
   changeView?: (view: string) => void;
 }
 
 const Login: React.FC<LoginProps> = ({ changeView }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const user = useSelector((state: RootState) => state.user.user);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const error = useSelector((state: RootState) => state.user.error);
   const dispatch = useAppDispatch();
 
@@ -29,22 +28,21 @@ const Login: React.FC<LoginProps> = ({ changeView }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      // Dispatch the login action and await the response
-      const response = await dispatch(login({ email, password })).unwrap();
-
-      // Check the response to ensure login was successful
-      if (response.user) {
-        // If login is successful, redirect to the homepage
-        window.location.href = "/homepage";
-      } else {
-        // Handle cases where login is not successful but no error thrown
-        console.log("Login failed: No error thrown, check your login logic.");
-      }
-    } catch (error) {
-      // Handle any errors from login process
-      console.error("Login failed:", error);
-    }
+    dispatch(login({ email, password }))
+      .unwrap()
+      .then((user) => {
+        window.location.href = '/homepage'; // Use Next.js router if inside SPA
+      })
+      .catch((error) => {
+        console.error('Login failed:', error);
+        // Check if error detail is available and update state accordingly
+        if (error.message) {
+          dispatch(setError(error.message)); // Update Redux state with more specific error
+        } else {
+          console.error('Unexpected error structure:', error);
+          dispatch(setError('Login failed with unexpected error format'));
+        }
+      });
   };
 
   return (
@@ -79,19 +77,9 @@ const Login: React.FC<LoginProps> = ({ changeView }) => {
             />
           </div>
           {error && <p className={styles.errorMessage}>{error}</p>}
-          <button type="submit" className={styles.submitButton}>
-            Login
-          </button>
+          <button type="submit" className={styles.submitButton}>Login</button>
           <p className={styles.text}>No account?</p>
-          <center>
-            <button 
-              type="button"
-              onClick={() => (window.location.href = "/signUp")}
-              className={styles.changeViewButton}
-            >
-              Sign Up
-            </button>
-          </center>{" "}
+          <Link href="/signUp" className={styles.changeViewButton}>Sign Up</Link>
         </form>
       </div>
     </div>
