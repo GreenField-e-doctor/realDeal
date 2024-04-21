@@ -47,20 +47,37 @@ module.exports = {
             res.status(500).json({ msg: 'Error fetching the post.' });
         }
     },
-    // Add a new `post` record
-    addPost: async function(req, res) {
+    
+    getAll: async function(req, res) {
         try {
-            const post = await prisma.post.create({
-                data: req.body,
-            });
-            res.status(201).json(post);
+            const posts = await prisma.post.findMany();
+            res.status(200).json(posts);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ msg: 'Error adding post.' });
+            res.status(500).json({ msg: 'Error fetching posts.' });
         }
     },
+    addPost: async function(req, res) {
+        try {
+            const { title, content, image } = req.body;
+    
+            const post = await prisma.post.create({
+                data: {
+                    title: title,
+                    content: content,
+                    image: image,
+                    liked: false,
+                }
+            });
+            res.status(201).json({ message: 'Post created successfully', post });
+        } catch (error) {
+            console.error('Error creating post:', error);
+            res.status(500).json({ error: 'Failed to create post' });
+        }
+    }
+    ,
 
-    // Delete a `post` record based on the `id` parameter
+   
     deleteOne: async function(req, res) {
         try {
             const postId = parseInt(req.params.id);

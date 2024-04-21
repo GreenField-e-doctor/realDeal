@@ -1,6 +1,6 @@
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:Yeesou.33@localhost:3306/mydbc"
+  url      = "mysql://Amine:wess2004wess@localhost:3306/mydbc"
 }
 
 generator client {
@@ -8,12 +8,12 @@ generator client {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  name     String
-  password String
-  email    String  @unique
-  role     String
-  image    String?
+  id            Int           @id @default(autoincrement())
+  name          String
+  password      String
+  email         String        @unique
+  role          String
+  image         String?
 
   // Relations
   products      Product[]
@@ -21,18 +21,17 @@ model User {
   conversations Conversation[] @relation(name: "ConversationParticipants")
   cart          Cart?          @relation(fields: [cartId], references: [id])
   cartId        Int?
-   comments  CommentPost[]
 }
 
 model Product {
-  id              Int     @id @default(autoincrement())
+  id              Int      @id @default(autoincrement())
   name            String
   description     String
   price           Float
   color           String // You might want to change the type to match your data structure
   image           String
   category        String
-  quantity        Int     @default(1)
+  quantity        Int      @default(1)
   brand           String
   fashionDesigner String?
 
@@ -44,11 +43,11 @@ model Product {
 }
 
 model Cart {
-  id       Int    @id @default(autoincrement())
+  id       Int     @id @default(autoincrement())
   name     String
   image    String
   price    Float
-  quantity Int    @default(1)
+  quantity Int     @default(1)
 
   userId Int @unique
 
@@ -59,46 +58,31 @@ model Cart {
 }
 
 model Conversation {
-  id Int @id @default(autoincrement())
-
-  participants User[] @relation("ConversationParticipants")
-
-  messages Message[]
+  id            Int      @id @default(autoincrement())
+  participants  User[]   @relation("ConversationParticipants")
+  messages      Message[]
 }
 
 model Message {
-  id         Int    @id @default(autoincrement())
-  senderId   Int
-  receiverId Int
-  content    String
+  id             Int         @id @default(autoincrement())
+  senderId       Int
+  receiverId     Int
+  content        String
 
-  conversationId Int? // Foreign key
+  conversationId Int?        // Foreign key
   conversation   Conversation? @relation(fields: [conversationId], references: [id])
 }
 
-
 model Post {
-  id        Int          @id @default(autoincrement())
-  title     String
-  content   String
-  image     String
-  userId    Int          // Foreign key for associated user
-  user      User         @relation(fields: [userId], references: [id])
-  comments  CommentPost[] // This defines the one-to-many relationship
+  id      Int     @id @default(autoincrement())
+  title   String
+  content String
+  image   String @db.VarChar(1000)
+  liked     Boolean   @default(false)
+
+  userId Int? // Foreign key
+  user   User? @relation(fields: [userId], references: [id])
 }
-
-
-model CommentPost {
-  id        Int      @id @default(autoincrement())
-  content   String
-  createdAt DateTime @default(now())
-  postId    Int      // Foreign key that connects to the Post model
-  post      Post     @relation(fields: [postId], references: [id])
-  userId    Int      // Foreign key for the user who made the comment
-  user      User     @relation(fields: [userId], references: [id])
-}
-
-
 
 model Nft {
   id           Int    @id @default(autoincrement())
@@ -131,5 +115,4 @@ model Comment {
   imageUrl     String   @db.VarChar(1000)   
  
 }
-
 
