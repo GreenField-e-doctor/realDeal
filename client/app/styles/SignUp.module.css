@@ -103,3 +103,31 @@
   z-index: 10; 
   text-align: center;
 } */
+
+.generateButton {
+  padding: 10px 20px;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.generateButton:hover {
+  background-color: #45a049;
+}
+
+.togglePassword {
+  background-color: transparent; /* Optional: makes the button background transparent */
+  border: none; /* Optional: removes the border */
+  color: black; /* Default color of the text */
+  cursor: pointer; /* Changes the cursor to indicate it's clickable */
+  padding: 5px 10px; /* Adds some padding around the text */
+  font-size: 16px; /* Sets the font size */
+}
+
+.togglePassword:hover {
+  color: #0056b3; /* Darker shade of blue when hovered */
+}

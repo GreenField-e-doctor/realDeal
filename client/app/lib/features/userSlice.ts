@@ -7,6 +7,7 @@ interface User {
     email: string;
     role?: string;  
     image?: string;  
+    user: User;
 }
 
 interface UserData {
@@ -32,6 +33,7 @@ interface AxiosServerError extends AxiosError {
 
 const initialState: { user: User | null; isLoading: boolean; error: string | null } = {
     user: null,
+    // jwt: jwt,
     isLoading: false,
     error: null
 };
@@ -41,7 +43,7 @@ export const registerUser = createAsyncThunk(
     async (userData: UserData, { rejectWithValue }) => {
         try {
             const response = await axios.post<User>('http://localhost:1128/api/user/register', userData);
-            localStorage.setItem('user', JSON.stringify(response.data)); // Store user data in local storage
+            localStorage.setItem('user', JSON.stringify(response.data.user)); // Store user data in local storage
             return response.data; // Response should include user data including `id`
         } catch (error: unknown) {
             const e = error as AxiosServerError;

@@ -282,3 +282,15 @@
 }
 
 
+/* .mt-4.mr-4.ml-4 img {
+  width: 200px;  
+  height: 200px; 
+  object-fit: cover; 
+}
+
+div.mt-4.mr-4.ml-4 img {
+  width: 200px !important;  
+  height: 200px !important; 
+  object-fit: cover !important;
+  display: block !important;
+} */

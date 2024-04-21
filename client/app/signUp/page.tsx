@@ -21,6 +21,7 @@ const SignUp: React.FC<ExtendedSignUpProps> = ({ changeView }) => {
         image: ''
     });
     const [isLoading, setIsLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const dispatch = useAppDispatch();
     const error = useSelector((state: RootState) => state.user.error); // Use error from Redux state
 
@@ -51,6 +52,20 @@ const SignUp: React.FC<ExtendedSignUpProps> = ({ changeView }) => {
         }
     };
 
+    const generatePassword = () => {
+        const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+        let password = '';
+        for (let i = 0; i < 12; i++) {
+            const randomNumber = Math.floor(Math.random() * chars.length);
+            password += chars.substring(randomNumber, randomNumber + 1);
+        }
+        setFormData({ ...formData, password });
+    };
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!formData.image) {
@@ -78,8 +93,10 @@ const SignUp: React.FC<ExtendedSignUpProps> = ({ changeView }) => {
                         <option value="fashionDesigner">Fashion Designer</option>
                         <option value="client">Client</option>
                     </select>
-                    <input className={styles.inputField} type="password" id="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
-                    <Dropzone onDrop={handleImageDrop}>
+                    <input className={styles.inputField} type={showPassword ? "text" : "password"} id="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
+                    <button type="button" className={styles.togglePassword} onClick={togglePasswordVisibility}>
+                        {showPassword ? 'Hide Password' : 'Show Password'}
+                    </button>                    <Dropzone onDrop={handleImageDrop}>
                         {({ getRootProps, getInputProps }) => (
                             <section className={styles.dropzone}>
                                 <div {...getRootProps()}>
@@ -89,6 +106,7 @@ const SignUp: React.FC<ExtendedSignUpProps> = ({ changeView }) => {
                             </section>
                         )}
                     </Dropzone>
+                    <button type="button" className={styles.generateButton} onClick={generatePassword}>Generate Password</button>
                     {error && <p className={styles.errorMessage}>{error}</p>}
                     <button type="submit" className={styles.submitButton}>Sign Up</button>
                     <Link href="/login" legacyBehavior>

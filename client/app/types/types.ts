@@ -42,7 +42,7 @@ export interface Comment {
   createdAt: string;
   postId: number;
   userId: number;
-  user: User;
+  user: string | User ;
 
 }
 

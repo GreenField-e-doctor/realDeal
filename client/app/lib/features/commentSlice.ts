@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Assuming User interface is needed and defined here or imported
 interface User {
   id: number;
   name: string;
@@ -18,7 +17,7 @@ interface Comment {
 
 interface CommentState {
   commentsByPostId: { [key: number]: Comment[] };
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  status: 'idle' | 'loading' | 'succeeded' | 'failed'
   error: string | null;
 }
 
@@ -35,7 +34,8 @@ export const fetchCommentsByPost = createAsyncThunk('comments/fetchByPost', asyn
 
 export const addComment = createAsyncThunk('comments/addComment', async ({ content, postId, userId }: { content: string; postId: number; userId: number }) => {
   const response = await axios.post<Comment>('http://localhost:1128/api/comment', { content, postId, userId });
-  return { comment: response.data, postId };  // Return the new comment and postId
+  console.log('Add Comment Response:', response.data);
+ return { comment: response.data, postId };  // Return the new comment and postId
 });
 
 const commentSlice = createSlice({

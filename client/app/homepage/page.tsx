@@ -36,7 +36,7 @@ const Homepage = () => {
   };
 
   return (
-    <div className={style['all']}>
+    <div className={style['all']} style={{ color:'#FFFFFF'}}>
       <NavBar />
       <div style={{ paddingBottom: "100px" }}>
         {/* <Navbar user={user} changeView={changeView}/> */}
