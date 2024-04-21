@@ -2,7 +2,33 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 module.exports = {
-    // Add a new `post` record
+    getAll: async function(req, res) {
+        try {
+            const posts = await prisma.post.findMany();
+            res.json(posts);
+        } catch (error) {
+            console.error('Failed to fetch posts:', error);
+            res.status(500).json({ msg: 'Error fetching posts.' });
+        }
+    },
+
+    getOne: async function(req, res) {
+        try {
+            const id = parseInt(req.params.id);
+            const post = await prisma.post.findUnique({
+                where: { id }
+            });
+            if (post) {
+                res.json(post);
+            } else {
+                res.status(404).json({ msg: 'Post not found' });
+            }
+        } catch (error) {
+            console.error('Failed to fetch the post:', error);
+            res.status(500).json({ msg: 'Error fetching the post.' });
+        }
+    },
+    
     getAll: async function(req, res) {
         try {
             const posts = await prisma.post.findMany();
@@ -14,17 +40,25 @@ module.exports = {
     },
     addPost: async function(req, res) {
         try {
+            const { title, content, image } = req.body;
+    
             const post = await prisma.post.create({
-                data: req.body,
+                data: {
+                    title: title,
+                    content: content,
+                    image: image,
+                    liked: false,
+                }
             });
-            res.status(201).json(post);
+            res.status(201).json({ message: 'Post created successfully', post });
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ msg: 'Error adding post.' });
+            console.error('Error creating post:', error);
+            res.status(500).json({ error: 'Failed to create post' });
         }
-    },
+    }
+    ,
 
-    // Delete a `post` record based on the `id` parameter
+   
     deleteOne: async function(req, res) {
         try {
             const postId = parseInt(req.params.id);

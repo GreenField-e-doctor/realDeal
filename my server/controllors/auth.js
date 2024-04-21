@@ -39,7 +39,7 @@ module.exports = {
                     image
                 }
             });
-
+            console.log('New user created:', newUser)
             // Send response with newly created user
             const userWithoutPassword = { ...newUser, password: undefined };
             res.status(201).json(userWithoutPassword);
@@ -68,6 +68,8 @@ module.exports = {
 
             // Generate JWT token
             const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '1h' });
+           
+            console.log('User logged in successfully:', user.email);
 
             // Send response with token and user details
             const userWithoutPassword = { ...user, password: undefined };

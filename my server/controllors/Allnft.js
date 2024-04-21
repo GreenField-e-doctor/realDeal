@@ -18,7 +18,7 @@ module.exports = {
             }
 
             // Use Prisma Client to fetch all NFTs with the specified conditions
-            const allnft = await prisma.nft.findMany({ where: whereClause });
+            const allnft = await prisma.nft.findMany();
 
             res.status(200).send(allnft);
         } catch (error) {

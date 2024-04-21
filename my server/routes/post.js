@@ -3,7 +3,7 @@ const router = require('express').Router();
 
 
 
-const {getAll,addPost,deleteOne}=require('../controllors/post')
+const {getAll, getOne, addPost, deleteOne}=require('../controllors/post')
 
 
 

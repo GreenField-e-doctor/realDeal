@@ -1,0 +1,373 @@
+.all{
+    background-color: hsla(280, 33%, 46%, 1);
+    background-image: radial-gradient(at 36% 14%, hsla(266, 22%, 36%, 1) 0px, transparent 50%),
+                      radial-gradient(at 80% 0%, hsla(189, 53%, 11%, 1) 0px, transparent 50%),
+                      radial-gradient(at 0% 50%, hsla(355, 44%, 15%, 1) 0px, transparent 50%),
+                      radial-gradient(at 84% 85%, hsla(229, 74%, 12%, 1) 0px, transparent 50%),
+                      radial-gradient(at 0% 100%, hsla(360, 29%, 24%, 1) 0px, transparent 50%),
+                      radial-gradient(at 4% 14%, hsla(360, 47%, 27%, 1) 0px, transparent 50%);
+  
+}
+.card {
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card img {
+    width: 100%;.card {
+      padding: 10px;
+      background-color: transparent;
+      border: none;
+    }
+    
+    .card:hover {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    .card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .card-content {
+      padding: 1rem;
+      text-align: center;
+    }
+    
+    .card-rarity {
+      font-size: 0.8rem;
+      color: #777;
+      margin-left: 5.5rem;
+      cursor: pointer;
+    }
+    
+    .card-price {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      margin-top: -1.5rem;
+      padding: 0.5rem;
+      border-radius: 5px;
+    }
+    
+    .buy-now-button {
+      margin-top: -0.5rem;
+      background-color: rgb(222, 117, 222);
+      color: white;
+      border-radius: 15px;
+      padding: 0.5rem 1rem;
+    }
+    
+    .buy-now-button:hover {
+      background-color: #8e24aa;
+      cursor: pointer;
+    }
+    
+    .buy-now-button:active {
+      background-color: #5e2795;
+    }
+    
+    .card-price-button {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex-direction: column;
+    }
+    
+    .card-info {
+      display: flex;
+      align-items: center;
+    }
+    
+    .bi-bag-heart-fill {
+      color: red;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+    
+    /* Allnft.css */
+    
+    .filter-container {
+      background-color: rgba(89, 18, 80, 0.1);
+      padding: 2rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease-in-out;
+    }
+    
+    .filter-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      padding: 0.2rem;
+      background-color: #e0e0e0;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .filter-title::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background-color: #8e24aa;
+      border-radius: 50%;
+      margin-left: 10px;
+      transition: transform 0.3s ease-in-out;
+      transform-origin: center;
+    }
+    
+    .filter-select {
+      margin-bottom: 1rem;
+      margin-right: 1rem;
+      font-family: monospace;
+      appearance: none;
+      border: none;
+      background-color: transparent;
+      padding: 0.5rem;
+      border-bottom: 2px solid #8e24aa;
+      transition: border-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+      cursor: pointer;
+    }
+    
+    .filter-select:focus {
+      outline: none;
+      border-color: #5e2795;
+    }
+    
+    .filter-select:hover {
+      border-color: #5e2795;
+      transform: translateY(-3px);
+    }
+    
+    .filter-select:focus:not(:checked)::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background-color: #5e2795;
+      border-radius: 50%;
+      margin-left: 10px;
+      transform: translateX(10px);
+    }
+    
+    .filter-select:checked {
+      border-color: #5e2795;
+      background-color: #5e2795;
+      color: white;
+    }
+    
+    .filter-select:checked:hover {
+      border-color: #5e2795;
+      transform: translateY(-3px) scale(1.05);
+    }
+    
+    .filter-select option {
+      padding: 0.5rem;
+      background-color: #f2f2f2;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .filter-select option:hover {
+      background-color: #e0e0e0;
+    }
+    
+    .filter-select option:checked {
+      background-color: #e0e0e0;
+      font-weight: bold;
+    }
+    
+    .filter-select option:disabled {
+      color: #b3b3b3;
+    }
+    
+    .filter-select option:disabled:hover {
+      background-color: #f2f2f2;
+    }
+    
+    .filter-select option:disabled:focus {
+      background-color: #f2f2f2;
+    }
+    
+    height: 250px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card:hover img {
+    transform: scale(1.05);
+  }
+  
+  .card-content {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .card-rarity {
+    font-size: 0.8rem;
+    color: #777;
+    margin-left: 5.5rem;
+    cursor: pointer;
+  }
+  
+  .card-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    margin-top: -1.5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
+  
+  .buy-now-button {
+    margin-top: -0.5rem;
+    background-color: rgb(222, 117, 222);
+    color: white;
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+  }
+  
+  .buy-now-button:hover {
+    background-color: #8e24aa;
+    cursor: pointer;
+  }
+  
+  .buy-now-button:active {
+    background-color: #5e2795;
+  }
+  
+  .card-price-button {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .card-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .bi-bag-heart-fill {
+    color: red;
+    font-size: 1.6rem;
+    cursor: pointer;
+  }
+  
+  /* Allnft.css */
+  
+  .filter-container {
+    background-color: rgba(89, 18, 80, 0.1);
+    padding: 2rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .filter-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    padding: 0.2rem;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter-title::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: #8e24aa;
+    border-radius: 50%;
+    margin-left: 10px;
+    transition: transform 0.3s ease-in-out;
+    transform-origin: center;
+  }
+  
+  .filter-select {
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    font-family: monospace;
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    padding: 0.5rem;
+    border-bottom: 2px solid #8e24aa;
+    transition: border-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .filter-select:focus {
+    outline: none;
+    border-color: #5e2795;
+  }
+  
+  .filter-select:hover {
+    border-color: #5e2795;
+    transform: translateY(-3px);
+  }
+  
+  .filter-select:focus:not(:checked)::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: #5e2795;
+    border-radius: 50%;
+    margin-left: 10px;
+    transform: translateX(10px);
+  }
+  
+  .filter-select:checked {
+    border-color: #5e2795;
+    background-color: #5e2795;
+    color: white;
+  }
+  
+  .filter-select:checked:hover {
+    border-color: #5e2795;
+    transform: translateY(-3px) scale(1.05);
+  }
+  
+  .filter-select option {
+    padding: 0.5rem;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .filter-select option:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .filter-select option:checked {
+    background-color: #e0e0e0;
+    font-weight: bold;
+  }
+  
+  .filter-select option:disabled {
+    color: #b3b3b3;
+  }
+  
+  .filter-select option:disabled:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .filter-select option:disabled:focus {
+    background-color: #f2f2f2;
+  }
+  

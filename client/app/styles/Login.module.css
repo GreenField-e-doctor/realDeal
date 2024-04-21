@@ -1,0 +1,98 @@
+/* login.module.css */
+
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(113.49deg, #984D38 -30.3%, #181E41 58.12%);
+  }
+  
+  .card {
+    background: #FFFFFF;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+  }
+  
+  .inputField {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  
+  .inputField:focus {
+    border-color: #6c5ce7; /* Highlight input field when focused */
+    outline: none;
+  }
+  
+  .formControl {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .label {
+    color: #ffffff; /* White color for labels */
+    margin-bottom: 5px;
+  }
+  
+  .submitButton, .changeViewButton {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .submitButton {
+    background-color: #8A2BE2; /* Vibrant purple */
+    color: #ffffff; /* White text */
+  }
+  
+  .submitButton:hover {
+    background-color: #7A1EA1; /* Darker purple on hover */
+  }
+  
+  .changeViewButton {
+    background-color: transparent;
+    color: #0e0101;
+    
+  }
+  
+  .changeViewButton:hover {
+    background-color: #60b908;
+    color: #333;
+  }
+  
+  .errorMessage {
+    color: #ff0000; /* Red color for error messages */
+    font-size: 14px;
+    margin-top: -15px;
+    margin-bottom: 20px;
+  }
+  
+  @media (max-width: 600px) {
+    .card {
+      padding: 20px;
+    }
+  
+    .inputField, .submitButton, .changeViewButton {
+      padding: 12px;
+    }
+  }
+  .heading {
+    text-align: center;
+    /* Other styling if necessary */
+  }

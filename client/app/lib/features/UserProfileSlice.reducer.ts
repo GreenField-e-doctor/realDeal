@@ -1,5 +1,6 @@
-import { createAction, createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { RootState } from '../store';
 
 interface Post {
   id: number;
@@ -23,7 +24,7 @@ interface UserProfileState {
 }
 
 interface AddPostPayload {
-  post: Post; 
+  post: Omit<Post, 'id'>;
 }
 
 const initialState: UserProfileState = {
@@ -35,7 +36,7 @@ export const fetchPosts = createAsyncThunk(
   'userProfile/fetchPosts',
   async () => {
     try {
-      const response = await axios.get<Post[]>("http://localhost:1128/api/post/");
+      const response = await axios.get<Post[]>('http://localhost:1128/api/post');
       return response.data;
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -48,10 +49,35 @@ export const addPost = createAsyncThunk(
   'userProfile/addPost',
   async (payload: AddPostPayload) => {
     try {
-      const response = await axios.post<Post[]>("http://localhost:1128/api/post/", payload.post);
+      const response = await axios.post<Post>('http://localhost:1128/api/post', payload.post);
       return response.data;
     } catch (error) {
       console.error('Error adding post:', error);
+      throw error;
+    }
+  }
+);
+
+export const deletePost = createAsyncThunk(
+  'userProfile/deletePost',
+  async (postId: number) => {
+    try {
+      await axios.delete(`http://localhost:1128/api/post/${postId}`);
+      return postId;
+    } catch (error) {
+      console.error('Error deleting post:', error);
+      throw error;
+    }
+  }
+);
+export const fetchUserById = createAsyncThunk(
+  'userProfile/fetchUserById',
+  async (userId: number) => {
+    try {
+      const response = await axios.get<User>(`http://localhost:1128/api/user/users/2`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user:', error);
       throw error;
     }
   }
@@ -79,13 +105,19 @@ const userProfileSlice = createSlice({
       state.posts = action.payload;
     });
     builder.addCase(addPost.fulfilled, (state, action) => {
-      state.posts.push(...action.payload);
+      state.posts.push(action.payload);
+    });
+    builder.addCase(fetchUserById.fulfilled, (state, action) => {
+      state.user = action.payload;
+    });
+    builder.addCase(deletePost.fulfilled, (state, action) => {
+      state.posts = state.posts.filter(post => post.id !== action.payload);
     });
   },
 });
 
-export const { setUser, deletePost, updateProfile, updatePosts } = userProfileSlice.actions;
 
-export const updatePost = createAction<Post>('userProfile/updatePost');
+
+export const { setUser, updateProfile, updatePosts } = userProfileSlice.actions;
 
 export default userProfileSlice.reducer;

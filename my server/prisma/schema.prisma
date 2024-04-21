@@ -8,12 +8,12 @@ generator client {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  name     String
-  password String
-  email    String  @unique
-  role     String
-  image    String?
+  id            Int           @id @default(autoincrement())
+  name          String
+  password      String
+  email         String        @unique
+  role          String
+  image         String?
 
   // Relations
   products      Product[]
@@ -24,14 +24,14 @@ model User {
 }
 
 model Product {
-  id              Int     @id @default(autoincrement())
+  id              Int      @id @default(autoincrement())
   name            String
   description     String
   price           Float
   color           String // You might want to change the type to match your data structure
   image           String
   category        String
-  quantity        Int     @default(1)
+  quantity        Int      @default(1)
   brand           String
   fashionDesigner String?
 
@@ -43,11 +43,11 @@ model Product {
 }
 
 model Cart {
-  id       Int    @id @default(autoincrement())
+  id       Int     @id @default(autoincrement())
   name     String
   image    String
   price    Float
-  quantity Int    @default(1)
+  quantity Int     @default(1)
 
   userId Int @unique
 
@@ -58,28 +58,27 @@ model Cart {
 }
 
 model Conversation {
-  id Int @id @default(autoincrement())
-
-  participants User[] @relation("ConversationParticipants")
-
-  messages Message[]
+  id            Int      @id @default(autoincrement())
+  participants  User[]   @relation("ConversationParticipants")
+  messages      Message[]
 }
 
 model Message {
-  id         Int    @id @default(autoincrement())
-  senderId   Int
-  receiverId Int
-  content    String
+  id             Int         @id @default(autoincrement())
+  senderId       Int
+  receiverId     Int
+  content        String
 
-  conversationId Int? // Foreign key
+  conversationId Int?        // Foreign key
   conversation   Conversation? @relation(fields: [conversationId], references: [id])
 }
 
 model Post {
-  id      Int    @id @default(autoincrement())
+  id      Int     @id @default(autoincrement())
   title   String
   content String
-  image   String   @db.VarChar(1000)
+  image   String @db.VarChar(1000)
+  liked     Boolean   @default(false)
 
   userId Int? // Foreign key
   user   User? @relation(fields: [userId], references: [id])
@@ -108,4 +107,10 @@ model Shows {
   time    String
   showing String
   imgUrl  String
+}
+
+model Comment {
+  id         Int      @id @default(autoincrement())
+  content    String
+  imageUrl   String   @db.VarChar(1000)   
 }
