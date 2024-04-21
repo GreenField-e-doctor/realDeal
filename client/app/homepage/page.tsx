@@ -2,12 +2,13 @@
 import React, { useState, useRef } from "react";
 // import Navbar from './navbar';
 // import Footer from './footer';
+// import Footer from "./Footer";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 // import Market from './Market';
-import styles from "../styles/homepage.style.css";
+import styles from "../styles/homepage.module.css";
 import NavBar from "./NavBar";
 import style from "../styles/explore.module.css";
 import Human from "../meta/3dModel/human";
@@ -36,13 +37,13 @@ const Homepage = () => {
   };
 
   return (
-    <div>
+    <div className={style["all"]}>
       <NavBar />
       <div style={{ paddingBottom: "100px" }}>
-        {/* <Navbar user={user} changeView={changeView}/> */}
+         {/* <Navbar user={user} changeView={changeView}/>  */}
         <div style={{ textAlign: "center", marginTop: "20px" }}>
-          <button className="custom-button">Main collection</button>
-          <button className="custom-button">Creators Market</button>
+          <button className={styles["custom-button"]}>Main collection</button>
+          <button className={styles["custom-button"]}>Creators Market</button>
           <div className="line"></div>
         </div>
         <div
@@ -102,7 +103,7 @@ const Homepage = () => {
 
                 <div style={{ flex: 1 }} className="flex flex-row">
                   <div
-                    className={styles["image-container"]}
+                    className={styles["iage-container"]}
                     style={{ marginRight: "20px" }}
                   >
                     <img
@@ -202,7 +203,7 @@ const Homepage = () => {
                 auctor purus luctus enim egestas, ac scelerisque ante pulvinar.{" "}
               </p>
               <br />
-              <button className="custom-button" id="button">
+              <button className={styles["custom-button"]} id="button">
                 Show more
               </button>
             </div>
@@ -222,11 +223,11 @@ const Homepage = () => {
               marginBottom: "20px",
             }}
           >
-            <button className="custom-button">All Collections</button>
-            <button className="custom-button">Verified Brands</button>
-            <button className="custom-button">Verified Artists</button>
-            <button className="custom-button">New Drops</button>
-            <button className="custom-button">Live Shows</button>
+            <button className={styles["custom-button"]}>All Collections</button>
+            <button className={styles["custom-button"]}>Verified Brands</button>
+            <button className={styles["custom-button"]}>Verified Artists</button>
+            <button className={styles["custom-button"]}>New Drops</button>
+            <button className={styles["custom-button"]}>Live Shows</button>
           </div>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div
@@ -268,7 +269,7 @@ const Homepage = () => {
               </div>
               <br />
               <div className="mb-3">
-                <button className="custom-button">Buy Now</button>
+                <button className={styles["custom-button"]}>Buy Now</button>
               </div>
 
               {/* Heart icon */}
@@ -313,7 +314,7 @@ const Homepage = () => {
               </div>
               <br />
               <div className="mb-3">
-                <button className="custom-button">Buy Now</button>
+                <button className={styles["custom-button"]}>Buy Now</button>
               </div>
 
               {/* Heart icon */}
@@ -357,7 +358,7 @@ const Homepage = () => {
               </div>
               <br />
               <div className="mb-3">
-                <button className="custom-button">Buy Now</button>
+                <button className={styles["custom-button"]}>Buy Now</button>
               </div>
 
               {/* Heart icon */}
@@ -404,7 +405,7 @@ const Homepage = () => {
               </div>
               <br />
               <div className="mb-3">
-                <button className="custom-button">Buy Now</button>
+                <button className={styles["custom-button"]}>Buy Now</button>
               </div>
 
               {/* Heart icon */}
@@ -450,7 +451,7 @@ const Homepage = () => {
               </div>
               <br />
               <div className="mb-3">
-                <button className="custom-button">Buy Now</button>
+                <button className={styles["custom-button"]}>Buy Now</button>
               </div>
 
               {/* Heart icon */}
@@ -496,7 +497,7 @@ const Homepage = () => {
               </div>
               <br />
               <div className="mb-3">
-                <button className="custom-button">Buy Now</button>
+                <button className={styles["custom-button"]}>Buy Now</button>
               </div>
 
               {/* Heart icon */}
@@ -554,7 +555,7 @@ const Homepage = () => {
               </div>
               <br />
               <div className="mb-3">
-                <button className="custom-button">Buy Now</button>
+                <button className={styles["custom-button"]}>Buy Now</button>
               </div>
 
               {/* Heart icon */}
@@ -600,7 +601,7 @@ const Homepage = () => {
               </div>
               <br />
               <div className="mb-3">
-                <button className="custom-button">Buy Now</button>
+                <button className={styles["custom-button"]}>Buy Now</button>
               </div>
 
               {/* Heart icon */}
@@ -645,7 +646,7 @@ const Homepage = () => {
               </div>
               <br />
               <div className="mb-3">
-                <button className="custom-button">Buy Now</button>
+                <button className={styles["custom-button"]}>Buy Now</button>
               </div>
 
               {/* Heart icon */}
@@ -789,7 +790,7 @@ const Homepage = () => {
               </div>
               <br />
               <div className="mb-3">
-                <button className="custom-button">Buy Now</button>
+                <button className={styles["custom-button"]}>Buy Now</button>
               </div>
 
               {/* Heart icon */}
@@ -836,7 +837,7 @@ const Homepage = () => {
               </div>
               <br />
               <div className="mb-3">
-                <button className="custom-button">Buy Now</button>
+                <button className={styles["custom-button"]}>Buy Now</button>
               </div>
 
               {/* Heart icon */}
@@ -881,7 +882,7 @@ const Homepage = () => {
               </div>
               <br />
               <div className="mb-3">
-                <button className="custom-button">Buy Now</button>
+                <button className={styles["custom-button"]}>Buy Now</button>
               </div>
 
               {/* Heart icon */}
@@ -893,6 +894,7 @@ const Homepage = () => {
           <br />
         </div>
       </div>
+      {/* <Footer /> */}
     </div>
   );
 };
