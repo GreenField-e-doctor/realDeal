@@ -10,6 +10,7 @@ import NavBar from '../homepage/NavBar';
 import { faHeart as farHeart, faHeart as fasHeart, faUser } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles/community.module.css';
 import { User } from '../types/types';
+import Footer from '../homepage/Footer';
 
 interface Post {
   id: number;
@@ -140,10 +141,10 @@ const Community = () => {
   }
   console.log(userObject);
   
-  return (
+  return (  <div>
     
+          <NavBar />
     <div className={styles.communityLayout}>
-          {/* <NavBar /> */}
       <div className={styles.feedContainer}>
         <h1 className={styles.feedTitle}>Feeds</h1>
         {posts.map((post) => (
@@ -206,6 +207,8 @@ const Community = () => {
   ))}
   <button className={styles.seeAllButton}>See All Groups</button>
 </aside>
+    </div>
+    <Footer/>
     </div>
   );
   
