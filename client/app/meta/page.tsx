@@ -6,8 +6,12 @@ import { Model } from "./3dModel/model";
 import Human from "./3dModel/human";
 import style from "../styles/meta.module.css";
 import { FcLike } from "react-icons/fc";
+import NavBar from "../homepage/NavBar";
+import Footer from "../homepage/Footer";
 const ThreeModelViewer: React.FC = () => {
   return (
+    <div>
+        <NavBar/>
     <div className={style.body}>
       <div className="flex flex-row">
 
@@ -302,6 +306,8 @@ const ThreeModelViewer: React.FC = () => {
         </div>
 
       </div>
+        </div>
+        <Footer/>
         </div>
                      
      

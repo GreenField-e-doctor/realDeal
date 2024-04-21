@@ -2,11 +2,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import  styles from '../styles/Chat.module.css'
 import { IoSend } from "react-icons/io5";
+import Footer from '../homepage/Footer';
+import NavBar from '../homepage/NavBar';
 interface User {
+  id: string;
   name: string;
-  role: string;
+  image:string
+  role:string
 }
-
 interface Message {
   name: string;
   message: string;
@@ -18,22 +21,28 @@ interface Props {
 }
 
 const ChatComponent: React.FC<Props> = () => {
-  const user = {
-    name: 'Community',
-    role: 'chatBot'
-  }
+  
   const [message, setMessage] = useState<string>('');
+  const [user, setUser] = useState<User | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([{ name: "Community", message: "Welcome to the chat!", role: 'chatBot' }]);
   const [users, setUsers] = useState<User[]>([]);
   const ws = useRef<WebSocket | null>(null);
-
+  useEffect(() => {
+    const storedUserString = localStorage.getItem("user");
+    if (storedUserString) {
+      const storedUser = JSON.parse(storedUserString).user as User;
+      setUser(storedUser);
+    }
+  }, []);
+  
   useEffect(() => {
     function connect() {
       ws.current = new WebSocket('ws://localhost:1128');
 
       ws.current.onopen = () => {
         console.log('Connected to WebSocket server');
-        const newUserMessage = JSON.stringify({ type: 'newUser', name: user.name || 'Anonymous', role: user.role });
+        const newUserMessage = JSON.stringify({ type: 'newUser', name: user?.name || 'Anonymous', role: user?.role });
         ws.current?.send(newUserMessage);
       };
 
@@ -78,7 +87,7 @@ const ChatComponent: React.FC<Props> = () => {
         ws.current.close();
       }
     };
-  }, [user.name, user.role]);
+  }, [user?.name, user?.role]);
 
   const getUsernameColor = (username: string) => {
     let hash = 0;
@@ -93,7 +102,7 @@ const ChatComponent: React.FC<Props> = () => {
     e.preventDefault();
     if (!message.trim() || !ws.current || ws.current.readyState !== WebSocket.OPEN) return;
   
-    const messageData = { type: 'message', name: user.name || 'Anonymous', message, role: user.role };
+    const messageData = { type: 'message', name: user?.name || 'Anonymous', message, role: user?.role };
     ws.current.send(JSON.stringify(messageData));
 
     setMessage(''); 
@@ -101,7 +110,9 @@ const ChatComponent: React.FC<Props> = () => {
     
   };
 
-  return (
+  return (<div>
+
+  <NavBar/>
     <div className={styles['chat-container']}>
       <h2>Community Room</h2>
       <div className={styles["user-list"]}>
@@ -113,7 +124,7 @@ const ChatComponent: React.FC<Props> = () => {
       <hr />
        <div id="messages" className={styles["messages"]}>
         {messages.map((msg, index) => (
-          <p key={index} className={styles[`message ${msg.name === user.name ? "my-message" : ""}`]}>
+          <p key={index} className={styles[`message ${msg.name === user?.name ? "my-message" : ""}`]}>
             <strong style={{ color: getUsernameColor(msg.name) }}>{msg.name}</strong>: {msg.message}
           </p>
         ))}
@@ -128,6 +139,8 @@ const ChatComponent: React.FC<Props> = () => {
         />
         <IoSend  onClick={sendMessage} className={styles["chat-send-btn"]}/>
       </div>
+    </div>
+    <Footer/>
     </div>
   );
 };
