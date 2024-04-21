@@ -8,6 +8,7 @@ export interface Nft {
   UncommenRare: string;
   price: string;
   genre: string;
+  comingSoon: string;
 }
 export interface AllnftState {
   allnft: Nft[];
@@ -27,10 +28,8 @@ export interface AllnftState {
     if (params?.genre !== 'all') {
       queryParams.genre = params.genre;
     }
-    
-    const response = await axios.get<Nft[]>(`http://localhost:1128/api/allnft`, { params: queryParams });
-    console.log(response.data,'');
-    
+
+    const response = await axios.get<Nft[]>(`http://localhost:1128/api/allnft/`, { params: queryParams });
     return response.data;
   } catch (error) {
     throw new Error('Failed to fetch allnfts');
@@ -73,20 +72,4 @@ export const allnftsSlice = createSlice({
   },
 });
 
-export const { setStatusFilter, setGenreFilter} = allnftsSlice.actions;
-
-// {
-//   "UncommenRare": 1468,
-
-//   "price": 420,
-
-//   "imgUrl": "https://public.nftstatic.com/static/nft/webp/nft-extdata-loader/S3/1681534865221_gp1b1cdn8bcm3no1ajlq5zumhx5957y2_400x400.webp",
-  
-//   "genre": "Women",
-  
-//   "status": "Available",
-  
-//   "comingSoon": ""
-  
-  
-// }
+export const { setStatusFilter, setGenreFilter } = allnftsSlice.actions;

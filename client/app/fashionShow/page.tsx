@@ -6,6 +6,7 @@ import { IoShareSocialOutline } from "react-icons/io5";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchComments, addComment } from '../lib/features/commentsSlice';
+import { fetchAllnfts } from '../lib/features/allnftSlice';
 import { RootState } from '../lib/store';
 import { Action } from '@reduxjs/toolkit';
 import { IoSend } from "react-icons/io5";
@@ -14,11 +15,14 @@ const Video: React.FC = () => {
   const dispatch = useDispatch();
   const comments = useSelector((state: RootState) => state.comments);
   const [commentText, setCommentText] = useState<string>(''); // State to hold the input text
-
+  const nfts = useSelector((state: RootState) => state.allnft.allnft);
+  
   useEffect(() => {
     dispatch(fetchComments() as any);
+   dispatch<any>(fetchAllnfts({ status: 'all', genre: 'all' }))
+    {console.log(nfts,'ttffft')}
   }, [dispatch]);
-
+  
   const handleCommentSubmit = () => {
     if (commentText.trim() !== '') {
       dispatch(addComment(commentText) as unknown as Action);
@@ -26,7 +30,7 @@ const Video: React.FC = () => {
       setCommentText(''); 
     }
   };
-
+  
   return (
     <div className={styles["fashiondiv"]}>
       <iframe className={styles["video"]} src="https://www.youtube.com/embed/hoKDrFyQDy0"></iframe>
@@ -47,7 +51,22 @@ const Video: React.FC = () => {
         <button className={styles["follow"]}>follow</button>
       </div>
       <div className={styles["Twoboxes"]}>
-          <div className={styles["box2"]}><h4 className={styles['hChat']}>Representing Products</h4></div>
+          <div className={styles["box2"]}><h4 className={styles['hChat']}>Representing Products</h4>
+        <br/>
+        <div className={styles["scrolldiv1"]}>
+          {nfts.map((nft, index) => (
+            <div key={index}>
+             
+             <div className={styles['divpostfashionShow']}  key={nft.id}>
+              {nft.imgUrl &&<img className={styles['imgpostFashionshow']} src={nft.imgUrl} alt="Comment Image" />}
+              <p>{nft.comingSoon}</p>
+            </div>
+            
+            </div>
+          ))}
+            </div>
+
+          </div>
       <div className={styles["box1"]} >
           <h4 className={styles['represntig']}>Chat</h4>
           <div className={styles["scrolldiv"]}>

@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 // import Market from './Market';
-import styles from "../styles/homepage.module.css";
+import styles from "../styles/homepage.module.css"
 import NavBar from "./NavBar";
 import style from "../styles/explore.module.css";
 import Human from "../meta/3dModel/human";
