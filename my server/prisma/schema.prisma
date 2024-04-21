@@ -1,6 +1,6 @@
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:route@localhost:3306/mydbc"
+  url      = "mysql://Amine:wess2004wess@localhost:3306/mydbc"
 }
 
 generator client {
@@ -88,7 +88,7 @@ model Nft {
   id           Int    @id @default(autoincrement())
   UncommenRare Int
   price        Int
-  imgUrl       String
+  imgUrl       String   @db.VarChar(1000)
   genre        String
   status       String
   comingSoon   String
@@ -110,7 +110,9 @@ model Shows {
 }
 
 model Comment {
-  id         Int      @id @default(autoincrement())
-  content    String
-  imageUrl   String   @db.VarChar(1000)   
+  id           Int       @id @default(autoincrement())
+  content      String
+  imageUrl     String   @db.VarChar(1000)   
+ 
 }
+

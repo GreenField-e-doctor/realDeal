@@ -11,9 +11,7 @@
   "scripts": {
 
     "start": "nodemon index.js",
-
     "migrate": "npx prisma migrate dev"
-
   },
 
   "repository": {

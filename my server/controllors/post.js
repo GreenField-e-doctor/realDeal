@@ -4,8 +4,27 @@ const prisma = new PrismaClient();
 module.exports = {
     getAll: async function(req, res) {
         try {
-            const posts = await prisma.post.findMany();
-            res.json(posts);
+            const posts = await prisma.post.findMany({
+                select: {
+                    
+                    id  :   true,            
+                    title  : true, 
+                    content  :true,
+                    image:true,
+                    // createdAt: true,
+                     comments: {
+                        select:{
+                            id :true,
+                             content:true,
+                             user:true, 
+                        }
+                     },
+                     user: true,   
+                        
+                    
+                }
+            });
+            res.send(posts);
         } catch (error) {
             console.error('Failed to fetch posts:', error);
             res.status(500).json({ msg: 'Error fetching posts.' });

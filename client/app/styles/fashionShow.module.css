@@ -41,10 +41,12 @@ display: flex;
 padding-left: 200px;
 }
 .box2 {
+  
   width: 400px; 
   height: 400px; 
   background-color: #FFFFFF1A;
   margin: 10px; 
+ 
 }
 .box1 {
   
@@ -127,7 +129,7 @@ color: aliceblue;
 gap: 40px;
     display: flex;
     align-items: center; 
-    padding-top: 10px;
+    padding-top: 15px;
     color: white !important;
   }
 .imgcomments{
@@ -153,7 +155,30 @@ gap: 10px;
   .sendMessage{
     color: #0047FF;
   }
+  .scrolldiv1{
+    overflow-y: scroll;
+    height: 300px;
+  }
   .scrolldiv{
    overflow-y: scroll;
     height: 300px;
   }
+  .divpostfashionShow{
+    border-radius: 16px;
+    background-color: #FFFFFF1A;
+    width: 340px;
+    height: 70px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    color: #FFFFFF;
+    margin-top: 15px;
+  }
+.imgpostFashionshow{
+  border-radius:16px;
+  height: 70px;
+  width: 110px;
+  padding-top: 15px;
+  padding-left: 20px;
+}
