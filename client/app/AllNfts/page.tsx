@@ -1,9 +1,10 @@
 'use client'
-import React, { useEffect } from 'react';
+import React,{useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllnfts, setStatusFilter, setGenreFilter,AllnftState } from '../lib/features/allnftSlice';
 import styles from '../styles/AllNfts.module.css';
-
+import style from '../styles/homepage.module.css';
+import axios from 'axios';
 interface PageProps {
   changeView: (view: string) => void;
 }
@@ -12,16 +13,20 @@ interface PageProps {
   changeView: (view: string) => void;
 }
 
-
-
+axios.get('http://localhost:1128/api/allnft').then((response)=>{
+    console.log(response.data);
+})
 const Page: React.FC<PageProps> = ({ changeView }) => {
+    useEffect(() =>{
+        dispatch<any>(fetchAllnfts({ status: 'all', genre: 'all' }));
+    },[])
 
   const allnft = useSelector((state: { allnft: AllnftState }) => {
     console.log(state.allnft?.allnft);
     return state.allnft.allnft || [];
 });
 const status = useSelector((state: { allnft: AllnftState }) => {
-    console.log(state.allnft.status);
+    console.log(allnft);
     return state.allnft.status;
 });
 
@@ -62,37 +67,57 @@ const handleGenreChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     <div className={`${styles['row']}`}>
         {loading && <p>Loading...</p>}
         {error && <p>{error}</p>}
-        {Array.isArray(allnft) && allnft.map((nft) => (
-            <div key={nft.id} className={`${styles['col-lg-4']} ${styles['col-md-6']} ${styles['mb-4']}`}>
-                <div className={`${styles['card']} ${styles['card-cascade']} ${styles['narrower']} ${styles['card-nft']}`}>
-                    <div className={`${styles['view']} ${styles['view-cascade']} ${styles['overlay']}`}>
-                        <div className={`${styles['mask']} ${styles['rgba-white-slight']}`}></div>
-                        <img src={nft.imgUrl} alt="sample" className={`${styles['img-fluid']}`} />
-                        <div className={`${styles['mask']} ${styles['rgba-white-slight']}`}>
-                            <div className={`${styles['half-card']}`}>
-                                <div className={`${styles['card-up']}`}>
-                                    <p className={`${styles['card-info']}`}>
-                                        <strong>{nft.status}</strong>
-                                        <span className={`${styles['card-rarity']}`}>Secret Rare #{nft.UncommenRare}</span>
-                                    </p>
-                                </div>
-                                <div className={`${styles['card-content']}`}>
-                                    <div className={`${styles['card-price-button']}`}>
-                                        <p className={`${styles['card-price']}`}>
-                                            <strong>Price: {nft.price} ETH</strong>
-                                            <i className={`${styles['fa']} ${styles['fa-diamond']}`}></i>
-                                        </p>
-                                        <button onClick={() => changeView('Payment')} className="btn btn-primary btn-sm buy-now-button">Buy Now</button>
-                                        <i className={`${styles['bi']} ${styles['bi-bag-heart-fill']}`}></i>
-                                    </div>
-                                </div>
-                                <a href="#!" data-toggle="modal" data-target={`#modalLG${nft.id}`} className={`${styles['align-middle']} ${styles['d-flex']} ${styles['justify-content-center']} ${styles['btn-floating']} ${styles['btn-lg']} ${styles['ml-1']}`}></a>
-                            </div>
-                        </div>
-                    </div>
+       
+        <div className='flex flex-row flex-wrap gap-12 justify-center	'>
+          {Array.isArray(allnft) && allnft.map((nft) => (
+                 <div
+              style={{
+                width: "28%",
+                textAlign: "center",
+                backgroundColor: "#504052",
+                borderRadius: "20px",
+              }}
+            >
+              <div className=" mt-4 mr-4 ml-4 ">
+                <img
+                  src={nft.imgUrl}
+                  alt="Product"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    borderRadius: "20px",
+                  }}
+                />
+              </div>
+              <br />
+              <div className="flex flex-row ml-3">
+                <div className="flex flex-col">
+                  <p
+                    className="flex float-start mb-1"
+                    style={{ color: "#B0A2A7" }}
+                  >
+                    {" "}
+                    {nft.genre}{" "}
+                  </p>
+
+                  <p className="flex float-start">{nft.status}</p>
                 </div>
+
+                <p className="flex ml-40">{nft.price} {' '}ETH</p>
+
+                <br />
+              </div>
+              <br />
+              <div className="mb-3">
+                <button className={style["custom-button"]}>Buy Now</button>
+              </div>
+
+              {/* Heart icon */}
             </div>
-        ))} 
+            
+          ))}
+        
+        </div>
         </div>
 
     </div>

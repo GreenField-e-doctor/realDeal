@@ -29,9 +29,7 @@ export interface AllnftState {
       queryParams.genre = params.genre;
     }
 
-    const response = await axios.get<Nft[]>('http://localhost:1128/api/allnft', { params: queryParams });
-    console.log(response.data,'');
-
+    const response = await axios.get<Nft[]>(`http://localhost:1128/api/allnft/`, { params: queryParams });
     return response.data;
   } catch (error) {
     throw new Error('Failed to fetch allnfts');
@@ -74,4 +72,4 @@ export const allnftsSlice = createSlice({
   },
 });
 
-export const { setStatusFilter, setGenreFilter} = allnftsSlice.actions;
+export const { setStatusFilter, setGenreFilter } = allnftsSlice.actions;
