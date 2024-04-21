@@ -24,7 +24,11 @@ const Homepage = () => {
     false,
     false,
   ]);
-  const [view, setView] = useState("home");
+  const dummyData = [
+    { id: 1, imageUrl: 'https://example.com/image1.jpg', username: '@ipsum', description: 'lorem', price: '0.5 ETH' },
+    { id: 2, imageUrl: 'https://example.com/image2.jpg', username: '@lorem', description: 'ipsum', price: '0.7 ETH' },
+    { id: 3, imageUrl: 'https://example.com/image3.jpg', username: '@dolor', description: 'sit', price: '0.3 ETH' },
+  ];
 
   // Function to toggle liked state for a specific item
   const toggleLike = (index: number) => {
@@ -32,9 +36,7 @@ const Homepage = () => {
     newLiked[index] = !newLiked[index];
     setLiked(newLiked);
   };
-  const changeView = (view: string) => {
-    setView(view);
-  };
+    
 
   return (
     <div className={style["all"]}>
@@ -750,151 +752,53 @@ const Homepage = () => {
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div
-              style={{
-                width: "28%",
-                textAlign: "center",
-                backgroundColor: "#504052",
-                borderRadius: "20px",
-                marginTop: "10px",
-              }}
-            >
-              <div className=" mt-4 mr-4 ml-4 ">
-                <img
-                  src="https://s3-alpha-sig.figma.com/img/6ad7/0ad3/c0d9b88524001d4a23da533d7258a549?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BrNLgOcVYW1YOZfVjm9P3f9dm0DidawCveqWkx4Y3p76G291i8NyKphv2tbgghZhg0jxQgN5Z0K-FtBUPG1z9ALPhwInI0FDNX5YR1vRx8MvA-TFdEUo6BgQh3UEC9FrDb2vUgxfgGHKjC-YVeDwbtmqiofGE6HLJbItEv0jDngdT6oegPGr8b7d~wQ8xZx2haPlt5-ELZdrbpfwOmEcrLBply69IjErhin9roIL5L8LDDdSNxzdNSnfgaPOnSSaKrPRLr5WiAtEd6Sb7Cx1eFA8IuEjJgDG60t5dbxb-gfN2cU0Wol41PnzBdGqevBQ0J0~JSXzKNnKmwnbS3~HHg__"
-                  alt="Product"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    borderRadius: "20px",
-                  }}
-                />
-              </div>
-              <br />
-              <div className="flex flex-row ml-3">
-                <div className="flex flex-col">
-                  <p
-                    className="flex float-start mb-1"
-                    style={{ color: "#B0A2A7" }}
-                  >
-                    {" "}
-                    @ipsum{" "}
-                  </p>
-
-                  <p className="flex float-start"> lorem </p>
-                </div>
-
-                <p className="flex ml-40">0.5 ETH</p>
-
-                <br />
-              </div>
-              <br />
-              <div className="mb-3">
-                <button className={styles["custom-button"]}>Buy Now</button>
-              </div>
-
-              {/* Heart icon */}
+        {dummyData.map(item => (
+          <div
+            key={item.id}
+            style={{
+              width: "28%",
+              textAlign: "center",
+              backgroundColor: "#504052",
+              borderRadius: "20px",
+              marginTop: "10px",
+            }}
+          >
+            <div className="mt-4 mr-4 ml-4">
+              <img
+                src={item.imageUrl}
+                alt="Product"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: "20px",
+                }}
+              />
             </div>
-            {/* Repeat the above structure for other items */}
-            <div
-              style={{
-                width: "28%",
-                textAlign: "center",
-                backgroundColor: "#504052",
-                borderRadius: "20px",
-                marginTop: "10px",
-              }}
-            >
-              <div className=" mt-4 mr-4 ml-4 ">
-                <img
-                  src="https://s3-alpha-sig.figma.com/img/6ad7/0ad3/c0d9b88524001d4a23da533d7258a549?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BrNLgOcVYW1YOZfVjm9P3f9dm0DidawCveqWkx4Y3p76G291i8NyKphv2tbgghZhg0jxQgN5Z0K-FtBUPG1z9ALPhwInI0FDNX5YR1vRx8MvA-TFdEUo6BgQh3UEC9FrDb2vUgxfgGHKjC-YVeDwbtmqiofGE6HLJbItEv0jDngdT6oegPGr8b7d~wQ8xZx2haPlt5-ELZdrbpfwOmEcrLBply69IjErhin9roIL5L8LDDdSNxzdNSnfgaPOnSSaKrPRLr5WiAtEd6Sb7Cx1eFA8IuEjJgDG60t5dbxb-gfN2cU0Wol41PnzBdGqevBQ0J0~JSXzKNnKmwnbS3~HHg__"
-                  alt="Product"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    borderRadius: "20px",
-                  }}
-                />
-               
+            <br />
+            <div className="flex flex-row ml-3">
+              <div className="flex flex-col">
+                <p className="flex float-start mb-1" style={{ color: "#B0A2A7" }}>
+                  {item.username}
+                </p>
+                <p className="flex float-start">{item.description}</p>
               </div>
+              <p className="flex ml-40">{item.price}</p>
               <br />
-              <div className="flex flex-row ml-3">
-                <div className="flex flex-col">
-                  <p
-                    className="flex float-start mb-1"
-                    style={{ color: "#B0A2A7" }}
-                  >
-                    {" "}
-                    @ipsum{" "}
-                  </p>
-
-                  <p className="flex float-start"> lorem </p>
-                </div>
-
-                <p className="flex ml-40">0.5 ETH</p>
-
-                <br />
-              </div>
-              <br />
-              <div className="mb-3">
-                <button className={styles["custom-button"]}>Buy Now</button>
-              </div>
-
-              {/* Heart icon */}
             </div>
-            <div
-              style={{
-                width: "28%",
-                textAlign: "center",
-                backgroundColor: "#504052",
-                borderRadius: "20px",
-                marginTop: "10px",
-              }}
-            >
-              <div className=" mt-4 mr-4 ml-4 ">
-                <img
-                  src="https://s3-alpha-sig.figma.com/img/6ad7/0ad3/c0d9b88524001d4a23da533d7258a549?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BrNLgOcVYW1YOZfVjm9P3f9dm0DidawCveqWkx4Y3p76G291i8NyKphv2tbgghZhg0jxQgN5Z0K-FtBUPG1z9ALPhwInI0FDNX5YR1vRx8MvA-TFdEUo6BgQh3UEC9FrDb2vUgxfgGHKjC-YVeDwbtmqiofGE6HLJbItEv0jDngdT6oegPGr8b7d~wQ8xZx2haPlt5-ELZdrbpfwOmEcrLBply69IjErhin9roIL5L8LDDdSNxzdNSnfgaPOnSSaKrPRLr5WiAtEd6Sb7Cx1eFA8IuEjJgDG60t5dbxb-gfN2cU0Wol41PnzBdGqevBQ0J0~JSXzKNnKmwnbS3~HHg__"
-                  alt="Product"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    borderRadius: "20px",
-                  }}
-                />
-              </div>
-              <br />
-              <div className="flex flex-row ml-3">
-                <div className="flex flex-col">
-                  <p
-                    className="flex float-start mb-1"
-                    style={{ color: "#B0A2A7" }}
-                  >
-                    {" "}
-                    @ipsum{" "}
-                  </p>
-
-                  <p className="flex float-start"> lorem </p>
-                </div>
-
-                <p className="flex ml-40">0.5 ETH</p>
-
-                <br />
-              </div>
-              <br />
-              <div className="mb-3">
-                <button className={styles["custom-button"]}>Buy Now</button>
-              </div>
-
-              {/* Heart icon */}
+            <br />
+            <div className="mb-3">
+              <button className={styles["custom-button"]}>Buy Now</button>
             </div>
+            {/* Heart icon */}
           </div>
-          <br />
-          <br />
-          <br />
-          <br />
-        </div>
+        ))}
       </div>
-      {/* <Footer /> */}
+      <br />
+      <br />
+      <br />
+      <br />
+    </div>
+    </div>
     </div>
   );
 };
