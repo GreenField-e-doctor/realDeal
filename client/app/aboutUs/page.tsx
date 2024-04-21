@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../styles/aboutUs.module.css";
-
+import NavBar from "../homepage/NavBar";
+import Footer from "../homepage/Footer";
 const aboutUs = () => {
   const imageLinks = [
     "https://imagetolink.com/ib/pt45vMb7F6",
@@ -12,6 +13,10 @@ const aboutUs = () => {
   ];
   return (
     <div className={styles.all}>
+      <div className="bg-gray-500">
+
+      <NavBar/>
+      </div>
 <div className={styles.outer_container}>
         <div className={styles["responsive-container-block inner-container"]}>
           <div className={styles["responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-4 wk-ipadp-5 content-container"]}>
@@ -98,6 +103,7 @@ const aboutUs = () => {
           </div>
         </div>
       </div> 
+      <Footer/>
     </div>
  )
 }

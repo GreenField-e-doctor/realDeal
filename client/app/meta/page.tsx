@@ -67,27 +67,8 @@ const ThreeModelViewer: React.FC = () => {
               {/* Heart icon */}
             </div>
 
-        <div
-              style={{
-                width: "200px",
-                textAlign: "center",
-                backgroundColor: "#504052",
-                borderRadius: "20px",
-                // marginTop: "10px",
-              }}
-              className="mr-9"
 
-            >
-              <div className=" mt-4 mr-4 ml-4 ">
-                <img
-                  src="https://s3-alpha-sig.figma.com/img/d645/7073/3227e7c4414aee4ecffc42f6e9fe523c?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Mi2h7HuJa6coeKRGtgf-xMs9xH9WMEut9MK97obh-MGXQ6hmVddwOupmABLhOsxr8e5LKeDMjgvsubZlOQW~T68wT~8hY4V~ODGhUcNnzg1bSBgwneJ1cBRAhPqqNTv6dPze4S0RvenbSR~SyFXULmxPrhoM2SJkT5HQ9toe-SW6YDtaSEinj7r0O4kHrhqxz2sYyye7de8dWal9Y2jHT5igpp4ftDE6m~YUqqLNmVJSLKyWW9DegyfVix2wUEnoJspZixKRXhwKo0YaXrk~eQXnI~jt-fxyOtdWKXZAwrOiFViZr60TDC2hW4kCJTMa~VBmjNh6oNKihdfr0JF3Cw__"
-                  alt="Product"
-                  style={{
-                    width: "400px%",
-                    height: "200px",
-                    borderRadius: "20px",
-                  }}
-                />
+                
               </div>
               <br />
        
@@ -143,10 +124,99 @@ const ThreeModelViewer: React.FC = () => {
 
               {/* Heart icon */}
             </div>
-        </div>
-      </div>
-      </div>
-      <div className="StoresBody">
+        <div
+              style={{
+                  width: "28%",
+                  textAlign: "center",
+                backgroundColor: "#504052",
+                borderRadius: "20px",
+                marginTop: "10px",
+                marginLeft:'20px'
+              }}
+              >
+              <div className=" mt-4 mr-4 ml-4 ">
+                <img
+                  src="https://s3-alpha-sig.figma.com/img/6ad7/0ad3/c0d9b88524001d4a23da533d7258a549?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BrNLgOcVYW1YOZfVjm9P3f9dm0DidawCveqWkx4Y3p76G291i8NyKphv2tbgghZhg0jxQgN5Z0K-FtBUPG1z9ALPhwInI0FDNX5YR1vRx8MvA-TFdEUo6BgQh3UEC9FrDb2vUgxfgGHKjC-YVeDwbtmqiofGE6HLJbItEv0jDngdT6oegPGr8b7d~wQ8xZx2haPlt5-ELZdrbpfwOmEcrLBply69IjErhin9roIL5L8LDDdSNxzdNSnfgaPOnSSaKrPRLr5WiAtEd6Sb7Cx1eFA8IuEjJgDG60t5dbxb-gfN2cU0Wol41PnzBdGqevBQ0J0~JSXzKNnKmwnbS3~HHg__"
+                  alt="Product"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    borderRadius: "20px",
+                }}
+                />
+              </div>
+              <br />
+              <div className="flex flex-row ml-3">
+                <div className="flex flex-col">
+                  <p
+                    className="flex float-start mb-1"
+                    style={{ color: "#B0A2A7" }}
+                    >
+                    {" "}
+                    @ipsum{" "}
+                  </p>
+
+                  <p className="flex float-start"> lorem </p>
+                </div>
+
+
+                
+              </div>
+              <br />
+              <div className="mb-3">
+                <button className="custom-button">Buy Now</button>
+              </div>
+
+              {/* Heart icon */}
+            </div>
+        <div
+              style={{
+                  width: "28%",
+                  textAlign: "center",
+                backgroundColor: "#504052",
+                borderRadius: "20px",
+                marginTop: "10px",
+                marginLeft:'20px'
+
+              }}
+              >
+              <div className=" mt-4 mr-4 ml-4 ">
+                <img
+                  src="https://s3-alpha-sig.figma.com/img/6ad7/0ad3/c0d9b88524001d4a23da533d7258a549?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BrNLgOcVYW1YOZfVjm9P3f9dm0DidawCveqWkx4Y3p76G291i8NyKphv2tbgghZhg0jxQgN5Z0K-FtBUPG1z9ALPhwInI0FDNX5YR1vRx8MvA-TFdEUo6BgQh3UEC9FrDb2vUgxfgGHKjC-YVeDwbtmqiofGE6HLJbItEv0jDngdT6oegPGr8b7d~wQ8xZx2haPlt5-ELZdrbpfwOmEcrLBply69IjErhin9roIL5L8LDDdSNxzdNSnfgaPOnSSaKrPRLr5WiAtEd6Sb7Cx1eFA8IuEjJgDG60t5dbxb-gfN2cU0Wol41PnzBdGqevBQ0J0~JSXzKNnKmwnbS3~HHg__"
+                  alt="Product"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    borderRadius: "20px",
+                }}
+                />
+              </div>
+              <br />
+              <div className="flex flex-row ml-3">
+                <div className="flex flex-col">
+                  <p
+                    className="flex float-start mb-1"
+                    style={{ color: "#B0A2A7" }}
+                    >
+                    {" "}
+                    @ipsum{" "}
+                  </p>
+
+                  <p className="flex float-start"> lorem </p>
+                </div>
+
+
+                
+              </div>
+              <br />
+              <div className="mb-3">
+                <button className="custom-button">Buy Now</button>
+              </div>
+
+              {/* Heart icon */}
+            </div>
+                      </div>
+                      <div className="StoresBody">
         <p className="ml-20">Stores</p>
         <br/>
         <div className="flex flex-row gap-5 ml-40 ">
@@ -232,7 +302,9 @@ const ThreeModelViewer: React.FC = () => {
         </div>
 
       </div>
-      </div>
+        </div>
+                     
+     
    
   );
 };

@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../lib/hook';
-import { RootState } from '../lib/store';
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "../lib/hook";
+import { RootState } from "../lib/store";
 import { login } from "../lib/features/userSlice";
 // import Link from 'next/link';
-import styles from '../styles/Login.module.css';
+import styles from "../styles/Login.module.css";
 
 interface LoginProps {
   changeView?: (view: string) => void;
 }
 
 const Login: React.FC<LoginProps> = ({ changeView }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const user = useSelector((state: RootState) => state.user.user);
   const error = useSelector((state: RootState) => state.user.error);
   const dispatch = useAppDispatch();
@@ -36,18 +36,16 @@ const Login: React.FC<LoginProps> = ({ changeView }) => {
       // Check the response to ensure login was successful
       if (response.user) {
         // If login is successful, redirect to the homepage
-        window.location.href = '/homepage';
+        window.location.href = "/homepage";
       } else {
         // Handle cases where login is not successful but no error thrown
-        console.log('Login failed: No error thrown, check your login logic.');
+        console.log("Login failed: No error thrown, check your login logic.");
       }
     } catch (error) {
       // Handle any errors from login process
-      console.error('Login failed:', error);
+      console.error("Login failed:", error);
     }
   };
-
- 
 
   return (
     <div className={styles.pageContainer}>
@@ -55,20 +53,46 @@ const Login: React.FC<LoginProps> = ({ changeView }) => {
         <h2 className={styles.heading}>Login</h2>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
           <div className={styles.formGroup}>
-            <label htmlFor="email" className={styles.label}>Email</label>
-            <input type="email" id="email" value={email} onChange={handleEmailChange} required className={styles.inputField} />
+            <label htmlFor="email" className={styles.label}>
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={handleEmailChange}
+              required
+              className={styles.inputField}
+            />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="password" className={styles.label}>Password</label>
-            <input type="password" id="password" value={password} onChange={handlePasswordChange} required className={styles.inputField} />
+            <label htmlFor="password" className={styles.label}>
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={handlePasswordChange}
+              required
+              className={styles.inputField}
+            />
           </div>
           {error && <p className={styles.errorMessage}>{error}</p>}
-          <button type="submit" className={styles.submitButton}>Login</button>
-          
+          <button type="submit" className={styles.submitButton}>
+            Login
+          </button>
           <p className={styles.text}>No account?</p>
-          <button type="button" onClick={() => window.location.href = '/signUp'} className={styles.changeViewButton}>
-  Sign Up
-</button>        </form>
+          <center>
+            <button 
+              type="button"
+              onClick={() => (window.location.href = "/signUp")}
+              className={styles.changeViewButton}
+            >
+              Sign Up
+            </button>
+          </center>{" "}
+        </form>
       </div>
     </div>
   );
