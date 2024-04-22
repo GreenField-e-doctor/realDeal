@@ -42,10 +42,10 @@ interface user {
 
 const Community = () => {
   const dispatch = useAppDispatch();
-  const posts = useSelector((state: RootState) => state.post.posts);
-  const commentsByPostId = useSelector((state: RootState) => state.comment.commentsByPostId);
-  const isPostsLoading = useSelector((state: RootState) => state.post.status) === 'loading';
-  const isCommentsLoading = useSelector((state: RootState) => state.comment.status) === 'loading';
+  const posts = useSelector((state: RootState) => (state as any).post.posts);
+  const commentsByPostId = useSelector((state: RootState) => (state as any).comment.commentsByPostId);
+  const isPostsLoading = useSelector((state: RootState) => (state as any).post.status === 'loading');
+  const isCommentsLoading = useSelector((state: RootState) => (state as any).comment.status === 'loading');
   const isLoading = isPostsLoading || isCommentsLoading;
   const [commentInputs, setCommentInputs] = useState<{ [key: number]: string }>({});
   const [likedPosts, setLikedPosts] = useState<{ [key: number]: boolean }>({});
@@ -79,7 +79,7 @@ const Community = () => {
   useEffect(() => {
     if (posts.length > 0) {
       console.log(`Fetching comments for ${posts.length} posts...`);
-      posts.forEach(post => {
+      posts.forEach((post: any) => { // Annotate 'post' as 'any'
         dispatch(fetchCommentsByPost(post.id));
       });
     }
@@ -139,7 +139,7 @@ const Community = () => {
     
 
   }
-  console.log(userObject);
+  console.log(posts);
   
   return (  <div>
     
@@ -147,12 +147,12 @@ const Community = () => {
     <div className={styles.communityLayout}>
       <div className={styles.feedContainer}>
         <h1 className={styles.feedTitle}>Feeds</h1>
-        {posts.map((post) => (
+        {posts.map((post:any) => (
           <div key={post.id} className={styles.postCard}>
             <div className={styles.postHeader}>
               <FontAwesomeIcon icon={faUser} className={styles.userAvatar} />
               <div className={styles.userInfo}>
-                <h3 className={styles.userName}>{post.user ? post.user.name : 'Loading...'}</h3>
+                <h3 className={styles.userName}>{post.title}</h3>
                 <p className={styles.postTime}>Just now</p>
                 {/* <p className={styles.postTime}>{formatPostDate(post.createdAt)}</p> */}
 
@@ -169,11 +169,12 @@ const Community = () => {
               <button className={styles.shareButton}>Share</button>
             </div>
             <div className={styles.commentSection}>
-              {commentsByPostId[post.id]?.map(comment => (
-                <div key={comment.id} className={styles.comment}>
-                  <strong>{comment.user?.name || 'Loading '}:</strong> {comment.content}
-                </div>
-              ))}
+            {commentsByPostId[post.id]?.map((comment: any) => (
+  <div key={comment.id} className={styles.comment}>
+    <strong>{comment.user?.name || 'Loading'}:</strong> {comment.content}
+  </div>
+))}
+
               <input
                 type="text"
                 placeholder="Add a comment..."

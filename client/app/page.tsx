@@ -13,7 +13,7 @@ import NavBar from "../app/homepage/NavBar";
 import style from "../app/styles/explore.module.css"
 import { fetchPosts, } from "../app/lib/features/postSlice"
 import { AppDispatch, RootState } from '../app/lib/store';
-
+import axios from "axios";
 import { useAppDispatch,useAppSelector } from "../app/lib/hook";
 import { Post } from "../app/types/types";
 import { fetchExploreItems } from "../app/lib/features/exploreslice";
@@ -26,38 +26,13 @@ const Homepage = () => {
     dispatch(fetchPosts());
     dispatch(fetchExploreItems())
   }, [dispatch]);
-  const dummyData = [
-    { id: 1, imageUrl: 'https://s3-alpha-sig.figma.com/img/6ad7/0ad3/c0d9b88524001d4a23da533d7258a549?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BrNLgOcVYW1YOZfVjm9P3f9dm0DidawCveqWkx4Y3p76G291i8NyKphv2tbgghZhg0jxQgN5Z0K-FtBUPG1z9ALPhwInI0FDNX5YR1vRx8MvA-TFdEUo6BgQh3UEC9FrDb2vUgxfgGHKjC-YVeDwbtmqiofGE6HLJbItEv0jDngdT6oegPGr8b7d~wQ8xZx2haPlt5-ELZdrbpfwOmEcrLBply69IjErhin9roIL5L8LDDdSNxzdNSnfgaPOnSSaKrPRLr5WiAtEd6Sb7Cx1eFA8IuEjJgDG60t5dbxb-gfN2cU0Wol41PnzBdGqevBQ0J0~JSXzKNnKmwnbS3~HHg__', username: '@ipsum', description: 'lorem', price: '0.5 ETH' },
-    { id: 2, imageUrl: 'https://s3-alpha-sig.figma.com/img/6ad7/0ad3/c0d9b88524001d4a23da533d7258a549?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BrNLgOcVYW1YOZfVjm9P3f9dm0DidawCveqWkx4Y3p76G291i8NyKphv2tbgghZhg0jxQgN5Z0K-FtBUPG1z9ALPhwInI0FDNX5YR1vRx8MvA-TFdEUo6BgQh3UEC9FrDb2vUgxfgGHKjC-YVeDwbtmqiofGE6HLJbItEv0jDngdT6oegPGr8b7d~wQ8xZx2haPlt5-ELZdrbpfwOmEcrLBply69IjErhin9roIL5L8LDDdSNxzdNSnfgaPOnSSaKrPRLr5WiAtEd6Sb7Cx1eFA8IuEjJgDG60t5dbxb-gfN2cU0Wol41PnzBdGqevBQ0J0~JSXzKNnKmwnbS3~HHg__', username: '@lorem', description: 'ipsum', price: '0.7 ETH' },
-    { id: 3, imageUrl: 'https://s3-alpha-sig.figma.com/img/6ad7/0ad3/c0d9b88524001d4a23da533d7258a549?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BrNLgOcVYW1YOZfVjm9P3f9dm0DidawCveqWkx4Y3p76G291i8NyKphv2tbgghZhg0jxQgN5Z0K-FtBUPG1z9ALPhwInI0FDNX5YR1vRx8MvA-TFdEUo6BgQh3UEC9FrDb2vUgxfgGHKjC-YVeDwbtmqiofGE6HLJbItEv0jDngdT6oegPGr8b7d~wQ8xZx2haPlt5-ELZdrbpfwOmEcrLBply69IjErhin9roIL5L8LDDdSNxzdNSnfgaPOnSSaKrPRLr5WiAtEd6Sb7Cx1eFA8IuEjJgDG60t5dbxb-gfN2cU0Wol41PnzBdGqevBQ0J0~JSXzKNnKmwnbS3~HHg__', username: '@dolor', description: 'sit', price: '0.3 ETH' },
-  ];
-  const dummyData2 = [
-    {
-      id: 1,
-      name: "yeesou",
-      description: "lorem ipsum",
-      verified: true,
-      profilePicture: "https://s3-alpha-sig.figma.com/img/514e/d6c7/279fbf5e9453f3515714cf3aac978486?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PIYdr9xXqpb5Jm35~aJmqV~0ZKFLbMaLVIUOrSQnwLJGDqRgjXQnCKm~764l8teJO9zluFL4kPgzZIf16n9yswZ3WythVcu91ky3J7liIihyrF4M0TTv2LbJjPp-4raXICMV1nCRQPH4uVyp1AvX19CvtLjs6OAlBNArtGdpAxuvky8OTSQhoEgFLXRmoNHAczPkcAt2Nf05UO6aSPjyFfI8QVr4gi~7SC0H0DIPIeEzfpHNE0mRKxgFrIJB6EhN3WUDsjUD6WTIB5vk2521UjBakkuCERE-g9tiSY~tAkp5xsk00NJBDYM4BAlYdDBBprhaIYJQlsv2VNE8j1fWpA__",
-      coverPicture: "https://s3-alpha-sig.figma.com/img/514e/d6c7/279fbf5e9453f3515714cf3aac978486?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PIYdr9xXqpb5Jm35~aJmqV~0ZKFLbMaLVIUOrSQnwLJGDqRgjXQnCKm~764l8teJO9zluFL4kPgzZIf16n9yswZ3WythVcu91ky3J7liIihyrF4M0TTv2LbJjPp-4raXICMV1nCRQPH4uVyp1AvX19CvtLjs6OAlBNArtGdpAxuvky8OTSQhoEgFLXRmoNHAczPkcAt2Nf05UO6aSPjyFfI8QVr4gi~7SC0H0DIPIeEzfpHNE0mRKxgFrIJB6EhN3WUDsjUD6WTIB5vk2521UjBakkuCERE-g9tiSY~tAkp5xsk00NJBDYM4BAlYdDBBprhaIYJQlsv2VNE8j1fWpA__",
-    },
-    {
-      id: 2,
-      name: "john_doe",
-      description: "dolor sit amet",
-      verified: false,
-      profilePicture: "https://s3-alpha-sig.figma.com/img/514e/d6c7/279fbf5e9453f3515714cf3aac978486?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PIYdr9xXqpb5Jm35~aJmqV~0ZKFLbMaLVIUOrSQnwLJGDqRgjXQnCKm~764l8teJO9zluFL4kPgzZIf16n9yswZ3WythVcu91ky3J7liIihyrF4M0TTv2LbJjPp-4raXICMV1nCRQPH4uVyp1AvX19CvtLjs6OAlBNArtGdpAxuvky8OTSQhoEgFLXRmoNHAczPkcAt2Nf05UO6aSPjyFfI8QVr4gi~7SC0H0DIPIeEzfpHNE0mRKxgFrIJB6EhN3WUDsjUD6WTIB5vk2521UjBakkuCERE-g9tiSY~tAkp5xsk00NJBDYM4BAlYdDBBprhaIYJQlsv2VNE8j1fWpA__",
-      coverPicture: "https://s3-alpha-sig.figma.com/img/514e/d6c7/279fbf5e9453f3515714cf3aac978486?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PIYdr9xXqpb5Jm35~aJmqV~0ZKFLbMaLVIUOrSQnwLJGDqRgjXQnCKm~764l8teJO9zluFL4kPgzZIf16n9yswZ3WythVcu91ky3J7liIihyrF4M0TTv2LbJjPp-4raXICMV1nCRQPH4uVyp1AvX19CvtLjs6OAlBNArtGdpAxuvky8OTSQhoEgFLXRmoNHAczPkcAt2Nf05UO6aSPjyFfI8QVr4gi~7SC0H0DIPIeEzfpHNE0mRKxgFrIJB6EhN3WUDsjUD6WTIB5vk2521UjBakkuCERE-g9tiSY~tAkp5xsk00NJBDYM4BAlYdDBBprhaIYJQlsv2VNE8j1fWpA__",
-    },
-    {
-      id: 2,
-      name: "john_doe",
-      description: "dolor sit amet",
-      verified: false,
-      profilePicture: "https://s3-alpha-sig.figma.com/img/514e/d6c7/279fbf5e9453f3515714cf3aac978486?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PIYdr9xXqpb5Jm35~aJmqV~0ZKFLbMaLVIUOrSQnwLJGDqRgjXQnCKm~764l8teJO9zluFL4kPgzZIf16n9yswZ3WythVcu91ky3J7liIihyrF4M0TTv2LbJjPp-4raXICMV1nCRQPH4uVyp1AvX19CvtLjs6OAlBNArtGdpAxuvky8OTSQhoEgFLXRmoNHAczPkcAt2Nf05UO6aSPjyFfI8QVr4gi~7SC0H0DIPIeEzfpHNE0mRKxgFrIJB6EhN3WUDsjUD6WTIB5vk2521UjBakkuCERE-g9tiSY~tAkp5xsk00NJBDYM4BAlYdDBBprhaIYJQlsv2VNE8j1fWpA__",
-      coverPicture: "https://s3-alpha-sig.figma.com/img/514e/d6c7/279fbf5e9453f3515714cf3aac978486?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PIYdr9xXqpb5Jm35~aJmqV~0ZKFLbMaLVIUOrSQnwLJGDqRgjXQnCKm~764l8teJO9zluFL4kPgzZIf16n9yswZ3WythVcu91ky3J7liIihyrF4M0TTv2LbJjPp-4raXICMV1nCRQPH4uVyp1AvX19CvtLjs6OAlBNArtGdpAxuvky8OTSQhoEgFLXRmoNHAczPkcAt2Nf05UO6aSPjyFfI8QVr4gi~7SC0H0DIPIeEzfpHNE0mRKxgFrIJB6EhN3WUDsjUD6WTIB5vk2521UjBakkuCERE-g9tiSY~tAkp5xsk00NJBDYM4BAlYdDBBprhaIYJQlsv2VNE8j1fWpA__",
-    },
-  ];
-
+  
+  const handleBuy = () => {
+    axios.post(' http://localhost:1128/api/pay/',{amount:1000}).then((e)=>{
+      window.location.href = e.data.result.link
+    })
+  }
+ 
   return (
     <div style={{color:'white'}}>
     <div className={style["all"]}>
@@ -254,7 +229,7 @@ const Homepage = () => {
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", flexDirection:'row'}}>
           <div className="flex flex-row justify-center">
-      {dummyData.map(item => (
+      {posts.map(item => (
         <div
           key={item.id}
           style={{
@@ -310,7 +285,7 @@ const Homepage = () => {
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div className="flex flex-row justify-center">
-      {dummyData.map(item => (
+      {posts.map(item => (
         <div
           key={item.id}
           style={{
@@ -346,7 +321,7 @@ const Homepage = () => {
           </div>
           <br />
           <div className="mb-3">
-            <button className={styles["custom-button"]}>Buy Now</button>
+            <button className={styles["custom-button"] } onClick={handleBuy}>Buy Now</button>
           </div>
           {/* Heart icon */}
         </div>
@@ -365,7 +340,7 @@ const Homepage = () => {
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-          {dummyData2.map((item) => (
+          {users.map((item) => (
         <div className={style.container} key={item.id}>
           <div className={style.item}>
             <div className={style["profile-details"]}>
@@ -408,7 +383,7 @@ const Homepage = () => {
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-        {dummyData.map(item => (
+        {posts.map(item => (
           <div
             key={item.id}
             style={{

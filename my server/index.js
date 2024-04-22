@@ -19,6 +19,7 @@ const allnftRoutes = require("./routes/allnft.routes");
 const paymentRoutes = require('./routes/payment.routes');
 const commentRoutes = require ('./routes/comment.routes')
 const commentsRoutes = require('./routes/comments.routes');
+const paymentRoute = require('./routes/payment.routes');
 
 // WebSocket server logic
 wss.on('connection', function connection(ws) {
@@ -46,6 +47,7 @@ app.use("/api/allnft", allnftRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use('/api/comment', commentRoutes)
 app.use("/api/comment", commentsRoutes);
+app.use('/api/pay', paymentRoutes)
 
 // Start the server
 server.listen(PORT, function () {

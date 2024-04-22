@@ -15,7 +15,6 @@ const Explore: React.FC = () => {
     useEffect(() => {
         dispatch(fetchExploreItems());
     }, [dispatch]);
-
     return (
         <div className={style['all']}>
             <NavBar/>
@@ -40,10 +39,10 @@ const Explore: React.FC = () => {
                                 {item.name}
                                 <i className="bi bi-patch-check-fill" style={{ color: '#164dac', marginRight: '5px' }}></i>
                             </div>
-                            <img src={item.imgP} alt="Profile picture" className={style['profile-picture']} />
+                            <img src={item.profilePicture} alt="Profile picture" className={style['profile-picture']} />
                             <div className={style.description}>{item.description}</div>
                         </div>
-                        <img src={item.imgB} alt="Cover picture" className={style['cover-picture']} />
+                        <img src={item.coverPicture} alt="Cover picture" className={style['cover-picture']} />
                     </div>
                 ))}
             </div>

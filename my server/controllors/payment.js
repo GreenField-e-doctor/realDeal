@@ -83,13 +83,13 @@ module.exports = {
     add: async function(req, res) {
         const url = "https://developers.flouci.com/api/generate_payment";
         const payload = {
-            "app_token": process.env.APP_TOKEN,
-            "app_secret": process.env.APP_SECRET,
+            "app_token": "3ae91c05-02b2-4f92-9de8-bfcd08847afb",
+            "app_secret": "6a2f00e1-f15d-451c-82ba-149a5c5b4afb",
             "amount": req.body.amount,
             "accept_card": true,
             "session_timeout_secs": 1200,
-            "success_link": req.body.successLink || "http://localhost:3000/success",
-            "fail_link": req.body.failLink || "http://localhost:3000/fail",
+            "success_link": req.body.successLink || "http://localhost:3000/payment/payment_success",
+            "fail_link": req.body.failLink || "http://localhost:3000/payment/payment_fail",
             "developer_tracking_id": req.body.developerTrackingId || "default_tracking_id"
         };
 
@@ -108,8 +108,8 @@ module.exports = {
             const result = await axios.get(`https://developers.flouci.com/api/verify_payment/${req.params.id}`, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'apppublic': process.env.APP_TOKEN,
-                    'appsecret': process.env.APP_SECRET
+                    'apppublic': '3ae91c05-02b2-4f92-9de8-bfcd08847afb',
+                    'appsecret': '6a2f00e1-f15d-451c-82ba-149a5c5b4afb'
                 }
             });
             res.status(200).json(result.data);

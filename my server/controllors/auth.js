@@ -5,7 +5,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 require('dotenv').config();
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = '$2b$10$L.PyE1qdxTAtUwnFaMKSCO5VC47P.hyEcGH2ArO6gGJuVQN5S4jHq';
 
 module.exports = {
     // Register a new ///////user

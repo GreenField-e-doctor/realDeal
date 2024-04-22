@@ -6,6 +6,8 @@ import styles from '../styles/UserProfile.module.css';
 import { FaHeart } from 'react-icons/fa';
 import { useAppDispatch, useAppSelector } from '../lib/hook';
 import axios from 'axios';
+import NavBar from '../homepage/NavBar';
+import Footer from '../homepage/Footer';
 
 const cloudinaryUploadUrl = 'YOUR_CLOUDINARY_UPLOAD_URL';
 
@@ -96,6 +98,8 @@ const UserProfilePage: React.FC = () => {
   };
 
   return (
+    <div>
+      <NavBar/>
     <div className={styles.userprofilediv}>
       <input 
         type="file" 
@@ -218,6 +222,8 @@ const UserProfilePage: React.FC = () => {
           ))}
         </div>
       </div>
+    </div>
+    <Footer/>
     </div>
   );
 };

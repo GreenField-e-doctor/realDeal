@@ -59,7 +59,7 @@ export const login = createAsyncThunk(
     'user/login',
     async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
         try {
-            const response = await axios.post<User>('http://localhost:1128/api/user', { email, password });
+            const response = await axios.post<User>('http://localhost:1128/api/user/login', { email, password });
             localStorage.setItem('user', JSON.stringify(response.data)); // Store user data in local storage
             return response.data;
         } catch (error: unknown) {

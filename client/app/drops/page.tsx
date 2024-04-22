@@ -1,6 +1,9 @@
 import React from 'react'
+import NavBar from '../homepage/NavBar';
 const YourComponent: React.FC = () => {
   return (
+    <div>
+      <NavBar/>
 <div className="Drops" style={{width: 1440, height: 2643, position: 'relative', background: 'white'}}>
   <div className="Background" style={{width: 1440, height: 2643, left: 0, top: 0, position: 'absolute', background: 'linear-gradient(123deg, #842A11 0%, #181E41 63%)'}} />
   <div className="Texts" style={{height: 265, left: 424, top: 276, position: 'absolute'}}>
@@ -149,7 +152,8 @@ const YourComponent: React.FC = () => {
       </div>
     </div>
   </div>
-  
+  </div>
+
   </div>
 
 

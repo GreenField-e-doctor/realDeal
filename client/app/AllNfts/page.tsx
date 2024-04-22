@@ -44,7 +44,11 @@ const handleStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 const handleGenreChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setGenreFilter(event.target.value));
 };
-
+const handleBuy = () => {
+  axios.post(' http://localhost:1128/api/pay/',{amount:1000}).then((e)=>{
+    window.location.href = e.data.result.link
+  })
+}
   return (
     <div className={styles["all"] }>
       <NavBar/>
@@ -112,7 +116,7 @@ const handleGenreChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
               </div>
               <br />
               <div className="mb-3">
-                <button className={style["custom-button"]}>Buy Now</button>
+                <button className={style["custom-button"]} onClick={handleBuy}>Buy Now</button>
               </div>
 
               {/* Heart icon */}

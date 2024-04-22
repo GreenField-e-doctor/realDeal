@@ -14,7 +14,7 @@ const initialState: PostState = {
 };
 
 export const fetchPosts = createAsyncThunk('posts/fetchAll', async () => {
-  const response = await axios.get('http://localhost:1128/api/post/all');
+  const response = await axios.get('http://localhost:1128/api/post/');
   return response.data;
 });
 
